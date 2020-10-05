@@ -7,7 +7,7 @@ package fuentes;
 
 /**
  *
- * @author David Arteaga
+ * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
 public class Dia {
     
