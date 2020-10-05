@@ -12,12 +12,14 @@ package fuentes;
 public class Main {
     
      public static void main(String[] args) {
-        ListaMaterias lista = new ListaMaterias();
-        Materia mat1 = new Materia("Fisica", Dia.LUNES, "10:0", "20:0");
-        lista.add(mat1);
-        System.out.println(lista.toString());
-        
-        System.out.println(mat1.dia.getHoraFinal().toString());
+       ListaMaterias listaMaterias = new ListaMaterias();
+       Materia mat1 = new Materia("Fisica");
+       mat1.addDia(Dia.LUNES, 10, 11);
+       mat1.addDia(Dia.JUEVES, 12, 13);
+     
+       listaMaterias.add(mat1);
+       Horario horario = new Horario(listaMaterias);
+       
        
     }
     

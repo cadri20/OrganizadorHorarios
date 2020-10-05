@@ -9,7 +9,17 @@ package fuentes;
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
-public enum Dia {
+public class HorarioMateria {
     
-    LUNES,MARTES,MIERCOLES,JUEVES,VIERNES
+    Dia dia;
+    int horaInicio;
+    int horaFinal;
+
+    public HorarioMateria(Dia dia, int horaInicio, int horaFinal) {
+        this.dia = dia;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+    }
+    
+    
 }

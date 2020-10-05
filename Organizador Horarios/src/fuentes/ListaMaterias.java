@@ -12,5 +12,5 @@ import java.util.ArrayList;
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
 public class ListaMaterias extends ArrayList<Materia> {
-    
+
 }

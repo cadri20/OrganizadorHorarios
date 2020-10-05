@@ -5,22 +5,37 @@
  */
 package fuentes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
-public class Materia {
+public class Materia{
     
     String nombreMateria;
-    DiaDeLaSemana dia;
+    ArrayList<HorarioMateria> dias;
 
-    public Materia(String nombreMateria, Dia dia, String horaInicio, String horaFinal) {
+    public Materia(String nombreMateria) {
         this.nombreMateria = nombreMateria;
-        this.dia = new DiaDeLaSemana(dia, horaInicio, horaFinal);
+        dias = new ArrayList<>();
+    }
+    
+    public void addDia(Dia dia,int horaInicio, int horaFinal){
+        HorarioMateria horarioMateria = new HorarioMateria(dia,horaInicio,horaFinal);
+        dias.add(horarioMateria);
     }
 
-    @Override
-    public String toString() {
-        return "Materia{" + "nombreMateria=" + nombreMateria + ", dia=" + dia + '}';
+    public boolean comparar(Materia materia){
+        return false;
     }
+    
+    
+    
+    
+    
+    
+        
+
+    
 }
