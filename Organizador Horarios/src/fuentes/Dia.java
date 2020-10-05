@@ -9,6 +9,8 @@ package fuentes;
  *
  * @author David Arteaga
  */
-public class Dia {
+public enum Dia {
     
+   
+    LUNES,MARTES,MIERCOLES,JUEVES,VIERNES
 }

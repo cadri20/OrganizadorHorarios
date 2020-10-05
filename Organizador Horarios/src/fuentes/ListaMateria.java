@@ -5,10 +5,12 @@
  */
 package fuentes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
-public class ListaMateria {
+public class ListaMaterias extends ArrayList<Materia> {
     
 }
