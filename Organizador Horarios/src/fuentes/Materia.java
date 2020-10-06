@@ -28,6 +28,9 @@ public class Materia{
     }
 
     public boolean hayConflicto(Materia materia){
+        if(nombreMateria.equals(materia.nombreMateria))
+            return true;
+                    
         for(HorarioMateria horarioMateria: dias){
             for(HorarioMateria horarioMateria2: materia.dias){
                 if(horarioMateria.colisiona(horarioMateria2))
@@ -45,38 +48,6 @@ public class Materia{
         }
         return materiaString;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.nombreMateria);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Materia other = (Materia) obj;
-        if (!Objects.equals(this.nombreMateria, other.nombreMateria)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
-    
-    
-    
-        
 
     
 }
