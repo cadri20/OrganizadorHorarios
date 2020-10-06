@@ -30,7 +30,7 @@ public class HorarioMateria {
     }
     
     public boolean perteneceIntervalo(int num, int limInf, int limSup){
-        if(num >= limInf && num <= limSup)
+        if(num > limInf && num < limSup)
             return true;
         else
             return false;
