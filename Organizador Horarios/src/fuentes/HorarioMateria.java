@@ -35,5 +35,12 @@ public class HorarioMateria {
         else
             return false;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Dia = %s Horas = %d-%d",dia,horaInicio,horaFinal);
+    }
+    
+    
     
 }

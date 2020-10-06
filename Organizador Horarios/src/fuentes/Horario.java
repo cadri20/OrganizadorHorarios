@@ -1,18 +1,23 @@
 package fuentes;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author Hp
  */
 public class Horario {
-    ArrayList<Materia> horario;
+    Collection<Materia> horario;
     public Horario(ArrayList<Materia> materias){
         horario = organizarHorario(materias);
     }
     
-    private ArrayList<Materia> organizarHorario(ArrayList<Materia> materias){
+    private Collection<Materia> organizarHorario(ArrayList<Materia> materias){
+        Collections.shuffle(materias);
         ArrayList<Materia> listaOrganizada = new ArrayList<Materia>();
         for(Materia materia: materias){
             if(listaOrganizada.isEmpty()){
@@ -29,12 +34,16 @@ public class Horario {
                     listaOrganizada.add(materia);
             }
         }
-        return listaOrganizada;
+        Set<Materia> listaSinRepetidos = new HashSet<>(listaOrganizada);
+        return listaSinRepetidos;
     }
 
     @Override
     public String toString() {
-        return "Horario{" + "horario=" + horario + '}';
+        String horarioString = "";
+        for(Materia materia: horario)
+            horarioString+= materia;
+        return horarioString ;
     }
     
     
