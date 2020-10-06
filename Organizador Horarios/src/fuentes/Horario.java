@@ -34,8 +34,7 @@ public class Horario {
                     listaOrganizada.add(materiaAIngresar); //Si la materia a ingresar no colisionó con ninguna de la listaOrganizada entonces se la ingresa
             }
         }
-        Set<Materia> listaSinRepetidos = new HashSet<>(listaOrganizada); //Se eliminan las materias del mismo nombre al transformar la lista a Set
-        return listaSinRepetidos;
+        return listaOrganizada;
     }
 
     @Override
