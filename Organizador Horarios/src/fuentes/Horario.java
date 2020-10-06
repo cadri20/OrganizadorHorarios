@@ -17,24 +17,24 @@ public class Horario {
     }
     
     private Collection<Materia> organizarHorario(ArrayList<Materia> materias){
-        Collections.shuffle(materias);
-        ArrayList<Materia> listaOrganizada = new ArrayList<Materia>();
-        for(Materia materia: materias){
-            if(listaOrganizada.isEmpty()){
-                listaOrganizada.add(materia);
+        Collections.shuffle(materias); //Se ordena aleatoriamente a la lista de materias (Para que obtenerse diferentes horarios
+        ArrayList<Materia> listaOrganizada = new ArrayList<Materia>(); //En esta lista se iran agregando las materias 
+        for(Materia materiaAIngresar: materias){ //Se itera en la lista de materias
+            if(listaOrganizada.isEmpty()){ 
+                listaOrganizada.add(materiaAIngresar); //La primera materia en la lista se ingresa sin ninguna comparación
             }else{
-                boolean colisiona = false; 
-                for(Materia materia2: listaOrganizada){
-                    if(materia.hayConflicto(materia2)){
-                        colisiona = true;
+                boolean colisiona = false; // Centinela para saber si la materia que se va a ingresar colisiona con alguna de las que ya esta en la listaOrganizada
+                for(Materia materiaActual: listaOrganizada){ //Se itera dentro de la listaOrganizada para comparar su contenido con la materia que se quiere ingresar
+                    if(materiaAIngresar.hayConflicto(materiaActual)){
+                        colisiona = true;             // Si la materia a ingresar tiene conflicto con una de la listaOrganizada se detiene el bucle
                         break;   
                     }
                 }
                 if(!colisiona)
-                    listaOrganizada.add(materia);
+                    listaOrganizada.add(materiaAIngresar); //Si la materia a ingresar no colisionó con ninguna de la listaOrganizada entonces se la ingresa
             }
         }
-        Set<Materia> listaSinRepetidos = new HashSet<>(listaOrganizada);
+        Set<Materia> listaSinRepetidos = new HashSet<>(listaOrganizada); //Se eliminan las materias del mismo nombre al transformar la lista a Set
         return listaSinRepetidos;
     }
 

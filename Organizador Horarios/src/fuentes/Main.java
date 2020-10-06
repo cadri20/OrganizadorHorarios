@@ -26,11 +26,12 @@ public class Main {
        Materia mat3 = new Materia("Quimica");
        mat3.addDia(Dia.LUNES, 14, 16);
        
-       Materia mat4 = new Materia("Lenguaje");
-       mat4.addDia(Dia.MARTES, 11, 12);
+       Materia mat4 = new Materia("Fisica");
+       mat4.addDia(Dia.MARTES, 9, 13);
        
        Materia mat5 = new Materia("Geometria");
        mat5.addDia(Dia.MARTES, 12, 13);
+       
        
        
        listaMaterias.add(mat1);
