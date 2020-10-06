@@ -26,8 +26,19 @@ public class Materia{
         dias.add(horarioMateria);
     }
 
-    public boolean comparar(Materia materia){
+    public boolean hayConflicto(Materia materia){
+        for(HorarioMateria horarioMateria: dias){
+            for(HorarioMateria horarioMateria2: materia.dias){
+                if(horarioMateria.colisiona(horarioMateria2))
+                    return true;
+            }
+        }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Materia{" + "nombreMateria=" + nombreMateria + '}';
     }
     
     

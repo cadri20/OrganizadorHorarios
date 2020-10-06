@@ -1,23 +1,41 @@
 package fuentes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Hp
  */
 public class Horario {
-    ListaMaterias listaOrganizada;
-    public Horario(ListaMaterias materias){
-        listaOrganizada = organizarHorario(materias);
+    ArrayList<Materia> horario;
+    public Horario(ArrayList<Materia> materias){
+        horario = organizarHorario(materias);
     }
     
-    private ListaMaterias organizarHorario(ListaMaterias materias){
-        ListaMaterias listaDesorganizada = new ListaMaterias();
+    private ArrayList<Materia> organizarHorario(ArrayList<Materia> materias){
+        ArrayList<Materia> listaOrganizada = new ArrayList<Materia>();
         for(Materia materia: materias){
-            for(HorarioMateria horarioMateria: materia.dias){
-                System.out.println(horarioMateria.dia);
+            if(listaOrganizada.isEmpty()){
+                listaOrganizada.add(materia);
+            }else{
+                boolean colisiona = false; 
+                for(Materia materia2: listaOrganizada){
+                    if(materia.hayConflicto(materia2)){
+                        colisiona = true;
+                        break;   
+                    }
+                }
+                if(!colisiona)
+                    listaOrganizada.add(materia);
             }
         }
-        return listaDesorganizada;
+        return listaOrganizada;
     }
+
+    @Override
+    public String toString() {
+        return "Horario{" + "horario=" + horario + '}';
+    }
+    
     
 }

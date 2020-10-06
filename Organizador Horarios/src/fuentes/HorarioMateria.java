@@ -21,5 +21,19 @@ public class HorarioMateria {
         this.horaFinal = horaFinal;
     }
     
+    public boolean colisiona(HorarioMateria horarioMateria){
+        if(dia.equals(horarioMateria.dia)){
+            if(perteneceIntervalo(horaInicio,horarioMateria.horaInicio,horarioMateria.horaFinal) || perteneceIntervalo(horaFinal,horarioMateria.horaInicio,horarioMateria.horaFinal))               
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean perteneceIntervalo(int num, int limInf, int limSup){
+        if(num >= limInf && num <= limSup)
+            return true;
+        else
+            return false;
+    }
     
 }
