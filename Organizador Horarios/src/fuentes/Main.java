@@ -32,6 +32,7 @@ public class Main {
        Materia mat5 = new Materia("Geometria");
        mat5.addDia(Dia.MARTES, 12, 13);
        
+       
        listaMaterias.add(mat1);
        listaMaterias.add(mat2);
        listaMaterias.add(mat3);
@@ -40,7 +41,7 @@ public class Main {
        
        Horario horario = new Horario(listaMaterias);
        System.out.println(horario.toString());
-       //System.out.println(listaMaterias);
+       
     }
     
 }

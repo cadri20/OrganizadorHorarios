@@ -23,14 +23,16 @@ public class HorarioMateria {
     
     public boolean colisiona(HorarioMateria horarioMateria){
         if(dia.equals(horarioMateria.dia)){
-            if(perteneceIntervalo(horaInicio,horarioMateria.horaInicio,horarioMateria.horaFinal) || perteneceIntervalo(horaFinal,horarioMateria.horaInicio,horarioMateria.horaFinal))               
+            boolean esteHorarioEntreElOtro = perteneceIntervalo(horaInicio,horaFinal,horarioMateria.horaInicio,horarioMateria.horaFinal);
+            boolean elOtroEntreEsteHorario = perteneceIntervalo(horarioMateria.horaInicio,horarioMateria.horaFinal,horaInicio,horaFinal);
+            if(esteHorarioEntreElOtro || elOtroEntreEsteHorario)               
                 return true;
         }
         return false;
     }
     
-    public boolean perteneceIntervalo(int num, int limInf, int limSup){
-        if(num > limInf && num < limSup)
+    public boolean perteneceIntervalo(int num1, int num2, int limInf, int limSup){
+        if(num1 > limInf && num1 < limSup || num2 > limInf && num2 < limSup)
             return true;
         else
             return false;
