@@ -39,7 +39,15 @@ public class Materia{
         }
         return false;
     }
-
+    
+    public String[] toArray(){
+        String[] arregloMateria = new String[6];
+        arregloMateria[0] = nombreMateria;
+        for(HorarioMateria horarioMateria: dias){
+            arregloMateria[horarioMateria.dia.getNumero() + 1] = String.format("%d-%d", horarioMateria.horaInicio,horarioMateria.horaFinal);
+        }
+        return arregloMateria;
+    }
     @Override
     public String toString() {
         String materiaString = nombreMateria + '\n';

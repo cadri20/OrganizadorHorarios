@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,7 +37,18 @@ public class Horario {
         }
         return listaOrganizada;
     }
-
+    
+    public String[][] toArray(){
+        int cantMaterias = horario.size();
+        String[][] horarioMatriz = new String[cantMaterias][5];
+        int i = 0;
+        for(Materia materia: horario){
+            horarioMatriz[i] = materia.toArray();
+            i++;
+        }
+        return horarioMatriz;
+    }
+    
     @Override
     public String toString() {
         String horarioString = "";
@@ -44,6 +56,7 @@ public class Horario {
             horarioString+= materia;
         return horarioString ;
     }
+    
     
     
 }

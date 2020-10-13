@@ -11,5 +11,16 @@ package fuentes;
  */
 public enum Dia {
     
-    LUNES,MARTES,MIERCOLES,JUEVES,VIERNES
+    LUNES(0),MARTES(1),MIERCOLES(2),JUEVES(3),VIERNES(4);
+    
+    private final int numero;
+
+    private Dia(int numero) {
+        this.numero = numero;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+    
 }

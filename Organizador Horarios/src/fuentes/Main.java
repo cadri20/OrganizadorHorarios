@@ -6,6 +6,7 @@
 package fuentes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -42,7 +43,9 @@ public class Main {
        
        Horario horario = new Horario(listaMaterias);
        System.out.println(horario.toString());
-       
+        for (String[] arreglo : horario.toArray()) {
+            System.out.println(Arrays.toString(arreglo));
+        }
     }
     
 }
