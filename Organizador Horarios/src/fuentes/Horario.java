@@ -13,6 +13,7 @@ import java.util.Set;
  */
 public class Horario {
     Collection<Materia> horario;
+    static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes"};
     public Horario(ArrayList<Materia> materias){
         horario = organizarHorario(materias);
     }
