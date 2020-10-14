@@ -16,7 +16,10 @@ public class Horario implements Serializable{
     Collection<Materia> horario;
     public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes"};
     public Horario(ArrayList<Materia> materias){
-        horario = organizarHorario(materias);
+        if(!materias.isEmpty())
+            horario = organizarHorario(materias);
+        else
+            throw new IllegalArgumentException("La lista esta vacía");
     }
     
     private Collection<Materia> organizarHorario(ArrayList<Materia> materias){
