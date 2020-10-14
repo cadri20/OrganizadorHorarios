@@ -35,7 +35,7 @@ public class UtilsGUI {
     }
     
     static String[] rowToArray(JTable tabla, int rowNum){
-        int numColumnas = tabla.getRowCount();
+        int numColumnas = tabla.getColumnCount();
         String[] fila = new String[numColumnas];
         for(int i = 0; i < numColumnas; i++){
             fila[i] = (String) tabla.getValueAt(rowNum, i);
