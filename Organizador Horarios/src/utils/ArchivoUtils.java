@@ -18,9 +18,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Hp
  */
 public class ArchivoUtils {
+    static String extensionHorario = "hor";
     public static void guardarHorario(Horario horario, String path){
         try {
-            ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + ".ser")));
+            ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + "." + extensionHorario)));
             salida.writeObject(horario);
         } catch (IOException ex) {
             Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,7 +42,7 @@ public class ArchivoUtils {
     }
     public static String obtenerPath(String textoBoton){
         JFileChooser fileChooser = new JFileChooser(new File("."));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos Horario", "ser"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos Horario", extensionHorario));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int resultado = fileChooser.showDialog(null, textoBoton);
         
