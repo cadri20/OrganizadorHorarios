@@ -7,6 +7,7 @@ package fuentes;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -14,10 +15,11 @@ import java.util.Objects;
  */
 public class Materia{
     
-    String nombreMateria;
+    public String nombreMateria;
     ArrayList<HorarioMateria> dias;
 
     public Materia() {
+        dias = new ArrayList<>();
     }
 
     
@@ -26,6 +28,17 @@ public class Materia{
         dias = new ArrayList<>();
     }
     
+    public Materia(String[] arregloMateria){
+        this.nombreMateria = arregloMateria[0];
+        this.dias = new ArrayList<>();
+        for(int i = 1; i < arregloMateria.length; i++){
+            if(arregloMateria[i] != null){
+                StringTokenizer st = new StringTokenizer(arregloMateria[i],"-");
+                this.addDia(Dia.getDia(i - 1), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            }
+
+        }
+    }
     public void addDia(Dia dia,int horaInicio, int horaFinal){
         HorarioMateria horarioMateria = new HorarioMateria(dia,horaInicio,horaFinal);
         dias.add(horarioMateria);
