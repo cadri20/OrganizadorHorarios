@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.shape.Path;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import utils.ArchivoUtils;
 
@@ -20,7 +21,6 @@ import utils.ArchivoUtils;
  * @author Hp
  */
 public class JFramePrincipal extends javax.swing.JFrame {
-    DefaultTableModel modelo;
     ArrayList<Materia> listaMaterias;
     Materia materia;
     Horario horario;
@@ -50,6 +50,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuGuardarHorario = new javax.swing.JMenuItem();
         jMenuCargarHorario = new javax.swing.JMenuItem();
+        jMenuGuardarLista = new javax.swing.JMenuItem();
+        jMenuCargarLista = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,13 +101,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jTableHorario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
         jScrollPane1.setViewportView(jTableHorario);
@@ -134,6 +133,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuCargarHorario);
+
+        jMenuGuardarLista.setText("Guardar Lista");
+        jMenuGuardarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGuardarListaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuGuardarLista);
+
+        jMenuCargarLista.setText("Cargar Lista");
+        jMenuCargarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCargarListaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuCargarLista);
 
         jMenuBar1.add(jMenu1);
 
@@ -181,23 +196,36 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBAgregarMateriaActionPerformed
 
     private void jBGenerarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarHorarioActionPerformed
+        try{
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
         horario = new Horario(listaMateria);
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
+        }catch(IllegalArgumentException e){
+            JOptionPane.showMessageDialog(this, "No se han agregado materias a la lista","Lista vacía", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_jBGenerarHorarioActionPerformed
 
     private void jMenuGuardarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarHorarioActionPerformed
-        ArchivoUtils.guardarHorario(horario, ArchivoUtils.obtenerPath("Guardar"));
-      
+        ArchivoUtils.guardarHorario(horario, ArchivoUtils.obtenerPath("Guardar", ArchivoUtils.extensionHorario));
     }//GEN-LAST:event_jMenuGuardarHorarioActionPerformed
 
     private void jMenuCargarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarHorarioActionPerformed
-        String path = ArchivoUtils.obtenerPath("Abrir");
+        String path = ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionHorario);
         if(path != null){
             horario = ArchivoUtils.cargarHorario(path);
             UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);            
         }       
     }//GEN-LAST:event_jMenuCargarHorarioActionPerformed
+
+    private void jMenuGuardarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarListaActionPerformed
+        ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
+        ArchivoUtils.guardarLista(listaMateria, ArchivoUtils.obtenerPath("Guardar", ArchivoUtils.extensionLista));
+    }//GEN-LAST:event_jMenuGuardarListaActionPerformed
+
+    private void jMenuCargarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarListaActionPerformed
+        ArrayList<Materia> listaMateria = ArchivoUtils.cargarLista(ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionLista));
+        UtilsGUI.mostrarListaEnTabla(listaMateria, jTableListaMaterias1);
+    }//GEN-LAST:event_jMenuCargarListaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,7 +269,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCargarHorario;
+    private javax.swing.JMenuItem jMenuCargarLista;
     private javax.swing.JMenuItem jMenuGuardarHorario;
+    private javax.swing.JMenuItem jMenuGuardarLista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

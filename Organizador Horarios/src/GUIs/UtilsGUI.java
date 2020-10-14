@@ -47,4 +47,14 @@ public class UtilsGUI {
         DefaultTableModel modelo = new DefaultTableModel(horario.toArray(),Horario.titulosColumnas);
         tabla.setModel(modelo);        
     }
+    
+    static void mostrarListaEnTabla(ArrayList<Materia> listaMaterias, JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        for(Materia materia: listaMaterias){
+            String[] arregloMateria = materia.toArray();
+            modelo.addRow(arregloMateria);
+        }
+        tabla.setModel(modelo);
+    }
 }
