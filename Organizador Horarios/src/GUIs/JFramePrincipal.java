@@ -192,8 +192,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuGuardarHorarioActionPerformed
 
     private void jMenuCargarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarHorarioActionPerformed
-        horario = ArchivoUtils.cargarHorario(ArchivoUtils.obtenerPath());
-        UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);         
+        String path = ArchivoUtils.obtenerPath();
+        if(path != null){
+            horario = ArchivoUtils.cargarHorario(path);
+            UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);            
+        }       
     }//GEN-LAST:event_jMenuCargarHorarioActionPerformed
 
     /**
