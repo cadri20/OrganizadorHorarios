@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class Main {
     public static Horario horario;
     public static void main(String[] args) {
-        ArrayList<Materia> listaMaterias = new ArrayList<Materia>();
+        /*ArrayList<Materia> listaMaterias = new ArrayList<Materia>();
         Materia mat1 = new Materia("Fisica");
         mat1.addDia(Dia.LUNES, 10, 11);
         mat1.addDia(Dia.JUEVES, 12, 13);
@@ -27,10 +27,10 @@ public class Main {
 
         Materia mat3 = new Materia("Quimica");
         mat3.addDia(Dia.LUNES, 14, 16);
-
+        */
         Materia mat4 = new Materia("Fisica");
         mat4.addDia(Dia.MARTES, 9, 13);
-
+        /*
         Materia mat5 = new Materia("Geometria");
         mat5.addDia(Dia.MARTES, 12, 13);
 
@@ -45,7 +45,9 @@ public class Main {
         for (String[] arreglo : horario.toArray()) {
             System.out.println(Arrays.toString(arreglo));
         }
-        
+        */
+        Materia mat6 = new Materia(mat4.toArray());
+        System.out.println(mat6.toString());
         new JFramePrincipal().setVisible(true);
     }
 

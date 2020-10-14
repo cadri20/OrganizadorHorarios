@@ -23,4 +23,20 @@ public enum Dia {
         return numero;
     }
     
+    public static Dia getDia(int indice){
+        switch(indice){
+            case 0:
+                return Dia.LUNES;
+            case 1:
+                return Dia.MARTES;
+            case 2:
+                return Dia.MIERCOLES;
+            case 3:
+                return Dia.JUEVES;
+            case 4:
+                return Dia.VIERNES;
+            default:
+                return null;
+        }
+    }
 }

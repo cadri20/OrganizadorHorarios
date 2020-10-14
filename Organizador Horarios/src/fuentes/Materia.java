@@ -32,7 +32,7 @@ public class Materia{
         this.nombreMateria = arregloMateria[0];
         this.dias = new ArrayList<>();
         for(int i = 1; i < arregloMateria.length; i++){
-            if(arregloMateria[i] != null){
+            if(arregloMateria[i] != null && !arregloMateria[i].equals("")){
                 StringTokenizer st = new StringTokenizer(arregloMateria[i],"-");
                 this.addDia(Dia.getDia(i - 1), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
             }

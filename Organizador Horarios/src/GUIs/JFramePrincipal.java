@@ -30,19 +30,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTFNombreMateria = new javax.swing.JTextField();
         jBAgregarMateria = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableListaMaterias = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableListaMaterias1 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHorario = new javax.swing.JTable();
+        jBGenerarHorario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setText("Nombre de la Materia");
 
         jBAgregarMateria.setText("Agregar Materia");
         jBAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +48,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jTableListaMaterias.setModel(new javax.swing.table.DefaultTableModel(
+        jTableListaMaterias1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,36 +56,30 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
             }
         ));
-        jScrollPane2.setViewportView(jTableListaMaterias);
+        jScrollPane3.setViewportView(jTableListaMaterias1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addComponent(jTFNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBAgregarMateria)
-                .addGap(133, 133, 133))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(743, 743, 743)
+                        .addComponent(jBAgregarMateria))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTFNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBAgregarMateria))
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jBAgregarMateria)
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         jTableHorario.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,38 +95,57 @@ public class JFramePrincipal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableHorario);
 
+        jBGenerarHorario.setText("Generar Horario");
+        jBGenerarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGenerarHorarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(182, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(101, 101, 101)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 974, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(71, 71, 71)
+                            .addComponent(jBGenerarHorario))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addComponent(jBGenerarHorario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarMateriaActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) jTableListaMaterias.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTableListaMaterias1.getModel();
         String[] filaNula = new String[modelo.getColumnCount()];
         Arrays.fill(filaNula, null);
         modelo.addRow(filaNula);
     }//GEN-LAST:event_jBAgregarMateriaActionPerformed
+
+    private void jBGenerarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarHorarioActionPerformed
+        ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
+        Horario horario = new Horario(listaMateria);
+        DefaultTableModel modelo = new DefaultTableModel(horario.toArray(),Horario.titulosColumnas);
+        jTableHorario.setModel(modelo);
+    }//GEN-LAST:event_jBGenerarHorarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,12 +184,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregarMateria;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jBGenerarHorario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTFNombreMateria;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableHorario;
-    private javax.swing.JTable jTableListaMaterias;
+    private javax.swing.JTable jTableListaMaterias1;
     // End of variables declaration//GEN-END:variables
 }
