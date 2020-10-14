@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -18,7 +19,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Hp
  */
 public class ArchivoUtils {
-    static String extensionHorario = "hor";
+    public static String extensionHorario = "hor";
+    public static String extensionLista = "lis";
     public static void guardarHorario(Horario horario, String path){
         try {
             ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + "." + extensionHorario)));
@@ -40,9 +42,32 @@ public class ArchivoUtils {
         }
         return horario;
     }
-    public static String obtenerPath(String textoBoton){
+    
+    public static void guardarLista(ArrayList<Materia> listaMaterias, String path){
+        try {
+            ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + "." + extensionLista)));
+            salida.writeObject(listaMaterias);
+        } catch (IOException ex) {
+            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
+    
+    public static ArrayList<Materia> cargarLista(String path){
+        ArrayList<Materia> listaMaterias = null;
+        try {
+            ObjectInputStream entrada = new ObjectInputStream(Files.newInputStream(Paths.get(path)));
+            listaMaterias = (ArrayList<Materia>) entrada.readObject();
+        } catch (IOException ex) {
+            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaMaterias;    
+    }
+    
+    public static String obtenerPath(String textoBoton, String extension){
         JFileChooser fileChooser = new JFileChooser(new File("."));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos Horario", extensionHorario));
+        fileChooser.setFileFilter(new FileNameExtensionFilter(extension, extension));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int resultado = fileChooser.showDialog(null, textoBoton);
         
