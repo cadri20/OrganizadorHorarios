@@ -43,6 +43,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jBAgregarMateria = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableListaMaterias1 = new javax.swing.JTable();
+        jBBorrarMateria = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHorario = new javax.swing.JTable();
         jBGenerarHorario = new javax.swing.JButton();
@@ -75,28 +76,38 @@ public class JFramePrincipal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTableListaMaterias1);
 
+        jBBorrarMateria.setText("Borrar Materia");
+        jBBorrarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBorrarMateriaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(743, 743, 743)
-                        .addComponent(jBAgregarMateria))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(129, 129, 129)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(255, 255, 255)
+                .addComponent(jBAgregarMateria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBBorrarMateria)
+                .addGap(269, 269, 269))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jBAgregarMateria)
-                .addGap(34, 34, 34)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBAgregarMateria)
+                    .addComponent(jBBorrarMateria))
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jTableHorario.setModel(new javax.swing.table.DefaultTableModel(
@@ -223,9 +234,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuGuardarListaActionPerformed
 
     private void jMenuCargarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarListaActionPerformed
-        ArrayList<Materia> listaMateria = ArchivoUtils.cargarLista(ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionLista));
-        UtilsGUI.mostrarListaEnTabla(listaMateria, jTableListaMaterias1);
+        String path = ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionLista);
+        if(path != null){
+            ArrayList<Materia> listaMateria = ArchivoUtils.cargarLista(path);
+            UtilsGUI.mostrarListaEnTabla(listaMateria, jTableListaMaterias1);
+        }
     }//GEN-LAST:event_jMenuCargarListaActionPerformed
+
+    private void jBBorrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBorrarMateriaActionPerformed
+        int filaSeleccionada = jTableListaMaterias1.getSelectedRow();
+        if(filaSeleccionada != -1){
+            DefaultTableModel modelo = (DefaultTableModel) jTableListaMaterias1.getModel();
+            modelo.removeRow(filaSeleccionada);
+        }
+            
+    }//GEN-LAST:event_jBBorrarMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,6 +287,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregarMateria;
+    private javax.swing.JButton jBBorrarMateria;
     private javax.swing.JButton jBGenerarHorario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
