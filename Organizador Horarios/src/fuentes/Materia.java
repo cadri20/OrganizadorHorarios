@@ -17,6 +17,10 @@ public class Materia{
     String nombreMateria;
     ArrayList<HorarioMateria> dias;
 
+    public Materia() {
+    }
+
+    
     public Materia(String nombreMateria) {
         this.nombreMateria = nombreMateria;
         dias = new ArrayList<>();
@@ -48,6 +52,11 @@ public class Materia{
         }
         return arregloMateria;
     }
+
+    public void setNombreMateria(String nombreMateria) {
+        this.nombreMateria = nombreMateria;
+    }
+    
     @Override
     public String toString() {
         String materiaString = nombreMateria + '\n';
