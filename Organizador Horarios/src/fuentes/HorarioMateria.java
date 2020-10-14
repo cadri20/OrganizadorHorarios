@@ -5,11 +5,13 @@
  */
 package fuentes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
-public class HorarioMateria {
+public class HorarioMateria implements Serializable{
     
     Dia dia;
     int horaInicio;
