@@ -2,6 +2,7 @@ package utils;
 import fuentes.*;
 import GUIs.*;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Hp
@@ -39,11 +41,12 @@ public class ArchivoUtils {
     }
     public static String obtenerPath(){
         JFileChooser fileChooser = new JFileChooser(new File("."));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos Horario", "ser"));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int resultado = fileChooser.showOpenDialog(null);
         
         if(resultado == JFileChooser.CANCEL_OPTION)
-            System.exit(1);
+            return null;
         
         return fileChooser.getSelectedFile().toString();
     }
