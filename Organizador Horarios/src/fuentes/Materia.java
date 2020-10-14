@@ -5,6 +5,7 @@
  */
 package fuentes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
@@ -13,7 +14,7 @@ import java.util.StringTokenizer;
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
-public class Materia{
+public class Materia implements Serializable{
     
     public String nombreMateria;
     ArrayList<HorarioMateria> dias;
