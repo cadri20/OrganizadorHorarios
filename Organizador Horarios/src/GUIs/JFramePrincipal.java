@@ -1,10 +1,19 @@
 package GUIs;
 
 import fuentes.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.shape.Path;
 import javax.swing.table.DefaultTableModel;
+import utils.ArchivoUtils;
 
 /**
  *
@@ -14,6 +23,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     DefaultTableModel modelo;
     ArrayList<Materia> listaMaterias;
     Materia materia;
+    Horario horario;
     public JFramePrincipal() {
         initComponents();
         listaMaterias = new ArrayList<>();
@@ -36,6 +46,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHorario = new javax.swing.JTable();
         jBGenerarHorario = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuGuardarHorario = new javax.swing.JMenuItem();
+        jMenuCargarHorario = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +94,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addComponent(jBAgregarMateria)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         jTableHorario.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,6 +117,31 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("Archivo");
+
+        jMenuGuardarHorario.setText("Guardar Horario");
+        jMenuGuardarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuGuardarHorarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuGuardarHorario);
+
+        jMenuCargarHorario.setText("Cargar Horario");
+        jMenuCargarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCargarHorarioActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuCargarHorario);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,13 +161,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(58, 58, 58)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jBGenerarHorario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,10 +182,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jBGenerarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarHorarioActionPerformed
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
-        Horario horario = new Horario(listaMateria);
-        DefaultTableModel modelo = new DefaultTableModel(horario.toArray(),Horario.titulosColumnas);
-        jTableHorario.setModel(modelo);
+        horario = new Horario(listaMateria);
+        UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
     }//GEN-LAST:event_jBGenerarHorarioActionPerformed
+
+    private void jMenuGuardarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarHorarioActionPerformed
+        ArchivoUtils.guardarHorario(horario, ArchivoUtils.obtenerPath());
+      
+    }//GEN-LAST:event_jMenuGuardarHorarioActionPerformed
+
+    private void jMenuCargarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarHorarioActionPerformed
+        horario = ArchivoUtils.cargarHorario(ArchivoUtils.obtenerPath());
+        UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);         
+    }//GEN-LAST:event_jMenuCargarHorarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +234,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregarMateria;
     private javax.swing.JButton jBGenerarHorario;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCargarHorario;
+    private javax.swing.JMenuItem jMenuGuardarHorario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;

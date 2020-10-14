@@ -1,10 +1,12 @@
 package GUIs;
 
 import fuentes.Dia;
+import fuentes.Horario;
 import fuentes.Materia;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -41,4 +43,8 @@ public class UtilsGUI {
         return fila;
     }
    
+    static void mostrarHorarioEnTabla(Horario horario, JTable tabla){
+        DefaultTableModel modelo = new DefaultTableModel(horario.toArray(),Horario.titulosColumnas);
+        tabla.setModel(modelo);        
+    }
 }
