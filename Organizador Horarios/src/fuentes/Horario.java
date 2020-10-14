@@ -1,5 +1,6 @@
 package fuentes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @author Hp
  */
-public class Horario {
+public class Horario implements Serializable{
     Collection<Materia> horario;
     public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes"};
     public Horario(ArrayList<Materia> materias){
