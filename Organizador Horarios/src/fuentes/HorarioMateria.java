@@ -27,7 +27,8 @@ public class HorarioMateria implements Serializable{
         if(dia.equals(horarioMateria.dia)){
             boolean esteHorarioEntreElOtro = perteneceIntervalo(horaInicio,horaFinal,horarioMateria.horaInicio,horarioMateria.horaFinal);
             boolean elOtroEntreEsteHorario = perteneceIntervalo(horarioMateria.horaInicio,horarioMateria.horaFinal,horaInicio,horaFinal);
-            if(esteHorarioEntreElOtro || elOtroEntreEsteHorario)               
+            boolean tienenLimitesIguales = horaInicio == horarioMateria.horaInicio && horaFinal == horarioMateria.horaFinal;
+            if(esteHorarioEntreElOtro || elOtroEntreEsteHorario || tienenLimitesIguales)               
                 return true;
         }
         return false;
