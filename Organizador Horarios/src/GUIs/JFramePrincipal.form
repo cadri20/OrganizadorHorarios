@@ -189,17 +189,23 @@
             <Component class="javax.swing.JTable" name="jTableListaMaterias1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="0">
+                  <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="Materia" type="java.lang.Object"/>
                     <Column editable="true" title="Lunes" type="java.lang.Object"/>
                     <Column editable="true" title="Martes" type="java.lang.Object"/>
                     <Column editable="true" title="Miercoles" type="java.lang.Object"/>
                     <Column editable="true" title="Jueves" type="java.lang.Object"/>
                     <Column editable="true" title="Viernes" type="java.lang.Object"/>
+                    <Column editable="true" title="Sabado" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -259,17 +265,23 @@
         <Component class="javax.swing.JTable" name="jTableHorario">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="true" title="Materia" type="java.lang.Object"/>
                 <Column editable="true" title="Lunes" type="java.lang.Object"/>
                 <Column editable="true" title="Martes" type="java.lang.Object"/>
                 <Column editable="true" title="Miercoles" type="java.lang.Object"/>
                 <Column editable="true" title="Jueves" type="java.lang.Object"/>
                 <Column editable="true" title="Viernes" type="java.lang.Object"/>
+                <Column editable="true" title="Sabado" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>

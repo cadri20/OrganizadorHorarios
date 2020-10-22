@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author David Arteaga, Ariel Pillajo, Adrian Coloma
+ * @author Adrian Coloma
  */
 public class HorarioMateria implements Serializable{
     

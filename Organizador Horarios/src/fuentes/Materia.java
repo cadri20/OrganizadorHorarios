@@ -60,7 +60,7 @@ public class Materia implements Serializable{
     }
     
     public String[] toArray(){
-        String[] arregloMateria = new String[6];
+        String[] arregloMateria = new String[Horario.titulosColumnas.length];
         arregloMateria[0] = nombreMateria;
         for(HorarioMateria horarioMateria: dias){
             arregloMateria[horarioMateria.dia.getNumero() + 1] = String.format("%d-%d", horarioMateria.horaInicio,horarioMateria.horaFinal);

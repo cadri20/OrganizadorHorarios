@@ -74,7 +74,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+                "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"
             }
         ));
         jScrollPane3.setViewportView(jTableListaMaterias1);
@@ -119,7 +119,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes"
+                "Materia", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"
             }
         ));
         jScrollPane1.setViewportView(jTableHorario);

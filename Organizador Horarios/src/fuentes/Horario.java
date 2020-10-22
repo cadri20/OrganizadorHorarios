@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class Horario implements Serializable{
     Collection<Materia> horario;
-    public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes"};
+    public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     public Horario(ArrayList<Materia> materias){
         if(!materias.isEmpty())
             horario = organizarHorario(materias);
@@ -45,7 +45,7 @@ public class Horario implements Serializable{
     
     public String[][] toArray(){
         int cantMaterias = horario.size();
-        String[][] horarioMatriz = new String[cantMaterias][5];
+        String[][] horarioMatriz = new String[cantMaterias][titulosColumnas.length];
         int i = 0;
         for(Materia materia: horario){
             horarioMatriz[i] = materia.toArray();
