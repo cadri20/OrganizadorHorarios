@@ -5,13 +5,15 @@
  */
 package fuentes;
 
+import sun.net.www.content.image.gif;
+
 /**
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma
  */
 public enum Dia {
     
-    LUNES(0),MARTES(1),MIERCOLES(2),JUEVES(3),VIERNES(4);
+    LUNES(0),MARTES(1),MIERCOLES(2),JUEVES(3),VIERNES(4),SABADO(5);
     
     private final int numero;
 
@@ -23,20 +25,16 @@ public enum Dia {
         return numero;
     }
     
+    /**
+     * 
+     * @param indice El indice del dia a escoger
+     * @return El dia escogido. Devuelve nulo si el indice es invalido
+     */
     public static Dia getDia(int indice){
-        switch(indice){
-            case 0:
-                return Dia.LUNES;
-            case 1:
-                return Dia.MARTES;
-            case 2:
-                return Dia.MIERCOLES;
-            case 3:
-                return Dia.JUEVES;
-            case 4:
-                return Dia.VIERNES;
-            default:
-                return null;
+        for(Dia dia: Dia.values()){
+            if(dia.getNumero() == indice)
+                return dia;
         }
+        return null;
     }
 }
