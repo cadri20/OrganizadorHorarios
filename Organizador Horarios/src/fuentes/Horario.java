@@ -54,6 +54,24 @@ public class Horario implements Serializable{
         return horarioMatriz;
     }
     
+    public int getHoraMaxima(){
+        ArrayList<Integer> horasMaximas = new ArrayList<>();
+        for(Materia materia: horario){
+            horasMaximas.add(materia.getHoraMayor());
+        }
+        
+        return Collections.max(horasMaximas);
+    }
+    
+    public int getHoraMinima(){
+        ArrayList<Integer> horasMinimas = new ArrayList<>();
+        for(Materia materia: horario){
+            horasMinimas.add(materia.getHoraMenor());
+        }
+        
+        return Collections.min(horasMinimas);
+    }
+    
     @Override
     public String toString() {
         String horarioString = "";

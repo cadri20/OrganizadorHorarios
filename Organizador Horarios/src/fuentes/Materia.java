@@ -7,6 +7,7 @@ package fuentes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
@@ -80,5 +81,21 @@ public class Materia implements Serializable{
         return materiaString;
     }
 
+    public int getHoraMayor(){
+        ArrayList<Integer> horasFinales = new ArrayList<>();
+        for(HorarioMateria dia: dias){
+            horasFinales.add(dia.horaFinal);
+        }
+        return Collections.max(horasFinales);
+    }
     
+    public int getHoraMenor(){
+        ArrayList<Integer> horasIniciales = new ArrayList<>();
+        for(HorarioMateria dia: dias){
+            horasIniciales.add(dia.horaInicio);
+        }
+        return Collections.min(horasIniciales);        
+    }
+    
+ 
 }
