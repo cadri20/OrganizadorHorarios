@@ -5,12 +5,13 @@ import fuentes.Horario;
 import fuentes.Materia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Hp
+ * @author cadri
  */
 public class UtilsGUI {
     static String[][] tableToArray(JTable tabla){
@@ -49,6 +50,10 @@ public class UtilsGUI {
     }
     
     static void mostrarListaEnTabla(ArrayList<Materia> listaMaterias, JTable tabla){
+        if(listaMaterias == null){
+            JOptionPane.showMessageDialog(null, "La lista de materias es nula");
+            return;
+        }
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
         for(Materia materia: listaMaterias){
