@@ -21,10 +21,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     ArrayList<Materia> listaMaterias;
     Materia materia;
     Horario horario;
+    boolean estaElHorarioOrdenado;
+    
     public JFramePrincipal() {
         initComponents();
         listaMaterias = new ArrayList<>();
         materia = new Materia();
+        estaElHorarioOrdenado = false;
     }
 
     /**
@@ -261,6 +264,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
         horario = new Horario(listaMateria);
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
+        estaElHorarioOrdenado = false;
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, "No se han agregado materias a la lista","Lista vacía", JOptionPane.WARNING_MESSAGE);
         }
@@ -310,11 +314,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jBHorarioOrdenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHorarioOrdenadoActionPerformed
         jTableHorario.setModel(new DefaultTableModel(horario.getHorarioOrdenado(),Horario.titulosColumnasConHoras));
+        estaElHorarioOrdenado = true;
     }//GEN-LAST:event_jBHorarioOrdenadoActionPerformed
 
     private void jMenuExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExportarExcelActionPerformed
         try {
-            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario");
+            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario",estaElHorarioOrdenado);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();

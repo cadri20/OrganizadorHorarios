@@ -28,17 +28,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ExcelUtils {
 
-    public static void crearArchivoExcel(JTable tabla, String rutaArchivo, String nombreHoja) throws IOException {
+    public static void crearArchivoExcel(JTable tabla, String rutaArchivo, String nombreHoja, boolean unirCeldas) throws IOException {
         String[][] tablaConTitulos = new String[tabla.getRowCount() + 1][tabla.getColumnCount()];
         tablaConTitulos[0] = UtilsGUI.getTitulos(tabla);
         String[][] tablaArray = UtilsGUI.tableToArray(tabla);
         for (int i = 1; i < tablaConTitulos.length; i++) {
             tablaConTitulos[i] = tablaArray[i - 1];
         }
-        crearArchivoExcel(tablaConTitulos, rutaArchivo, nombreHoja);
+        crearArchivoExcel(tablaConTitulos, rutaArchivo, nombreHoja, unirCeldas);
     }
 
-    public static void crearArchivoExcel(String[][] tabla, String rutaArchivo, String nombreHoja) throws FileNotFoundException, IOException {
+    public static void crearArchivoExcel(String[][] tabla, String rutaArchivo, String nombreHoja, boolean unirCeldas) throws FileNotFoundException, IOException {
         File file = new File(rutaArchivo + ".xlsx");
         if (file.exists()) {
             int opcionSeleccionada = JOptionPane.showConfirmDialog(null, "El archivo ya existe, ¿Desea sobreescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
@@ -47,14 +47,14 @@ public class ExcelUtils {
             }
         }
         try (FileOutputStream fileOuS = new FileOutputStream(file)) {
-            XSSFWorkbook libro = crearWorkbook(tabla, nombreHoja);
+            XSSFWorkbook libro = crearWorkbook(tabla, nombreHoja, unirCeldas);
             libro.write(fileOuS);
             fileOuS.flush();
         }
 
     }
 
-    private static XSSFWorkbook crearWorkbook(String[][] tabla, String nombreHoja) {
+    private static XSSFWorkbook crearWorkbook(String[][] tabla, String nombreHoja, boolean unirCeldas) {
         XSSFWorkbook libro = new XSSFWorkbook();
         XSSFSheet hoja = libro.createSheet(nombreHoja);
         CellStyle estilo = bordes(libro);
@@ -70,8 +70,8 @@ public class ExcelUtils {
         for (int j = 0; j < tabla[0].length; j++) {
             hoja.autoSizeColumn(j);
         }
-        
-        unirCeldas(hoja, tabla.length, tabla[0].length);
+        if(unirCeldas)
+            unirCeldas(hoja, tabla.length, tabla[0].length);
         return libro;
     }
 
