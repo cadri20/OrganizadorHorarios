@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author cadri
  */
 public class UtilsGUI {
-    static String[][] tableToArray(JTable tabla){
+    public static String[][] tableToArray(JTable tabla){
         int numFilas = tabla.getRowCount();
         int numColumnas = tabla.getColumnCount();
         String[][] tablaMatriz = new String[numFilas][numColumnas];
@@ -26,7 +26,7 @@ public class UtilsGUI {
         return tablaMatriz;
     }
     
-    static List<Materia> tableToList(JTable tabla){
+    public static List<Materia> tableToList(JTable tabla){
         List<Materia> listaMaterias = new ArrayList<>();
         for(int i = 0; i < tabla.getRowCount(); i++){
             Materia materia = new Materia(rowToArray(tabla,i));
@@ -35,7 +35,7 @@ public class UtilsGUI {
         return listaMaterias;
     }
     
-    static String[] rowToArray(JTable tabla, int rowNum){
+    public static String[] rowToArray(JTable tabla, int rowNum){
         int numColumnas = tabla.getColumnCount();
         String[] fila = new String[numColumnas];
         for(int i = 0; i < numColumnas; i++){
@@ -44,12 +44,12 @@ public class UtilsGUI {
         return fila;
     }
    
-    static void mostrarHorarioEnTabla(Horario horario, JTable tabla){
+    public static void mostrarHorarioEnTabla(Horario horario, JTable tabla){
         DefaultTableModel modelo = new DefaultTableModel(horario.toArray(),Horario.titulosColumnas);
         tabla.setModel(modelo);        
     }
     
-    static void mostrarListaEnTabla(ArrayList<Materia> listaMaterias, JTable tabla){
+    public static void mostrarListaEnTabla(ArrayList<Materia> listaMaterias, JTable tabla){
         if(listaMaterias == null){
             JOptionPane.showMessageDialog(null, "La lista de materias es nula");
             return;
