@@ -62,4 +62,14 @@ public class UtilsGUI {
         }
         tabla.setModel(modelo);
     }
+    
+    public static String[] getTitulos(JTable tabla){
+        String[] titulos = new String[tabla.getColumnCount()];
+        for(int i = 0; i < titulos.length; i++){
+            titulos[i] = tabla.getColumnName(i);
+        }
+        return titulos;
+    }
+    
+   
 }

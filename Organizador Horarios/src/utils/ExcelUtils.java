@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +23,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelUtils {
     
     public static void crearArchivoExcel(JTable tabla, String rutaArchivo, String nombreHoja) throws IOException{
-        crearArchivoExcel(UtilsGUI.tableToArray(tabla), rutaArchivo, nombreHoja);
+        String[][] tablaConTitulos = new String[tabla.getRowCount() + 1][tabla.getColumnCount()];
+        tablaConTitulos[0] = UtilsGUI.getTitulos(tabla);
+        String[][] tablaArray = UtilsGUI.tableToArray(tabla);
+        for(int i = 1; i < tablaConTitulos.length; i++){
+            tablaConTitulos[i] = tablaArray[i - 1];
+        }
+        crearArchivoExcel(tablaConTitulos, rutaArchivo, nombreHoja);
     }
     
     public static void crearArchivoExcel(String[][] tabla, String rutaArchivo,String nombreHoja) throws FileNotFoundException, IOException{
