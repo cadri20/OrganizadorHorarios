@@ -146,7 +146,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jBHorarioOrdenado.setText("Horario Ordenado");
+        jBHorarioOrdenado.setText("Ordenar Horario");
         jBHorarioOrdenado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBHorarioOrdenadoActionPerformed(evt);
@@ -213,11 +213,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBHorarioOrdenado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(26, 26, 26))))
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +234,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addGap(40, 40, 40)
+                        .addGap(39, 39, 39)
                         .addComponent(jButton2)
                         .addGap(42, 42, 42)
                         .addComponent(jBHorarioOrdenado)
@@ -304,7 +304,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jBHorarioOrdenadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHorarioOrdenadoActionPerformed
-        jTableHorario.setModel(new DefaultTableModel(horario.getHorarioOrdenado(),Horario.titulosColumnas));
+        jTableHorario.setModel(new DefaultTableModel(horario.getHorarioOrdenado(),Horario.titulosColumnasConHoras));
     }//GEN-LAST:event_jBHorarioOrdenadoActionPerformed
 
     /**

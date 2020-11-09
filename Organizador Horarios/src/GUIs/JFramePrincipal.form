@@ -93,12 +93,12 @@
                           <Component id="jButton2" max="32767" attributes="0"/>
                           <Component id="jBHorarioOrdenado" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -120,7 +120,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="jBHorarioOrdenado" min="-2" max="-2" attributes="0"/>
@@ -352,7 +352,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jBHorarioOrdenado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Horario Ordenado"/>
+        <Property name="text" type="java.lang.String" value="Ordenar Horario"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBHorarioOrdenadoActionPerformed"/>
