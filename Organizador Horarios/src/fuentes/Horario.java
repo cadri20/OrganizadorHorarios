@@ -72,6 +72,39 @@ public class Horario implements Serializable{
         return Collections.min(horasMinimas);
     }
     
+    public String[][] getHorarioOrdenado(){
+        int horaMinima = getHoraMinima();
+        int horaMaxima = getHoraMaxima();
+        int filas = horaMaxima - horaMinima;
+        int columnas = titulosColumnas.length;
+        String[][] horarioOrdenado = new String[filas][columnas];
+        for(Materia materia: horario){
+            for(HorarioMateria dia: materia.dias){
+                for(int fila: dia.filas(horaMinima)){
+                    horarioOrdenado[fila][dia.dia.getNumero() + 1] = materia.nombreMateria;
+                }
+            }
+        }
+        int m = 0;
+        
+        //Se rellena la primera columna con las horas del horario
+        for(String hora: horas(filas,horaMinima)){
+            horarioOrdenado[m][0] = hora;
+            m++;
+        }
+        
+        return horarioOrdenado;
+    }
+    
+    private String[] horas(int filas, int horaMinima){
+        String[] horas = new String[filas];
+        int n = 0;
+        for(int i = 0; i < horas.length; i++){
+            horas[i] = String.format("%d-%d", horaMinima + n, horaMinima + n + 1);
+            n++;
+        }
+        return horas;
+    }
     @Override
     public String toString() {
         String horarioString = "";

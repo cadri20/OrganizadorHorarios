@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 /**
  *
- * @author David Arteaga, Ariel Pillajo, Adrian Coloma
+ * @author Adrian Coloma
  */
 public class Materia implements Serializable{
     
@@ -97,5 +97,6 @@ public class Materia implements Serializable{
         return Collections.min(horasIniciales);        
     }
     
- 
+    
+    
 }

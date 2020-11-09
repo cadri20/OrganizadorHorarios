@@ -46,6 +46,17 @@ public class HorarioMateria implements Serializable{
         return String.format("Dia = %s Horas = %d-%d",dia,horaInicio,horaFinal);
     }
     
-    
+    public int[] filas(int horaMinimaHorario){
+        int[] filas = new int[this.horaFinal - this.horaInicio];
+        int horaInicioRelativa = horaInicio - horaMinimaHorario;
+        //int horaFinalRelativa = horaFinal - 1 - horaMinimaHorario;
+        int n = 0;
+        for(int i = 0; i < filas.length ; i++){
+            filas[i]  = horaInicioRelativa + n;
+            n++;
+        }
+        
+        return filas;
+    }
     
 }
