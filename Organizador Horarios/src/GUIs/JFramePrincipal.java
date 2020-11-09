@@ -2,20 +2,15 @@ package GUIs;
 
 import fuentes.*;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.shape.Path;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import utils.ArchivoUtils;
+import utils.ExcelUtils;
 
 /**
  *
@@ -57,6 +52,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCargarHorario = new javax.swing.JMenuItem();
         jMenuGuardarLista = new javax.swing.JMenuItem();
         jMenuCargarLista = new javax.swing.JMenuItem();
+        jMenuExportarExcel = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -187,6 +183,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuCargarLista);
 
+        jMenuExportarExcel.setText("Exportar a Excel");
+        jMenuExportarExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuExportarExcelActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuExportarExcel);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -307,6 +311,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jTableHorario.setModel(new DefaultTableModel(horario.getHorarioOrdenado(),Horario.titulosColumnasConHoras));
     }//GEN-LAST:event_jBHorarioOrdenadoActionPerformed
 
+    private void jMenuExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExportarExcelActionPerformed
+        try {
+            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al exportar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jMenuExportarExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -349,6 +362,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCargarHorario;
     private javax.swing.JMenuItem jMenuCargarLista;
+    private javax.swing.JMenuItem jMenuExportarExcel;
     private javax.swing.JMenuItem jMenuGuardarHorario;
     private javax.swing.JMenuItem jMenuGuardarLista;
     private javax.swing.JPanel jPanel1;
