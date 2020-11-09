@@ -26,7 +26,12 @@ public class ExcelUtils {
     
     public static void crearArchivoExcel(String[][] tabla, String rutaArchivo,String nombreHoja) throws FileNotFoundException, IOException{
         File file = new File(rutaArchivo + ".xlsx");
-        
+        if(file.exists()){
+            int opcionSeleccionada = JOptionPane.showConfirmDialog(null, "El archivo ya existe, ¿Desea sobreescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
+            if(opcionSeleccionada == 1){
+                return;
+            }
+        }
         try (FileOutputStream fileOuS = new FileOutputStream(file)) {
             XSSFWorkbook libro = crearWorkbook(tabla, nombreHoja);
             libro.write(fileOuS);
@@ -46,6 +51,10 @@ public class ExcelUtils {
                 celda.setCellValue(tabla[i][j]);
             }
         }        
+        
+        for(int j = 0; j < tabla[0].length; j++){
+            hoja.autoSizeColumn(j);
+        }
         
         return libro;
     }
