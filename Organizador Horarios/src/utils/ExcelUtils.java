@@ -11,7 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.CellUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -52,22 +57,36 @@ public class ExcelUtils {
     private static XSSFWorkbook crearWorkbook(String[][] tabla, String nombreHoja) {
         XSSFWorkbook libro = new XSSFWorkbook();
         XSSFSheet hoja = libro.createSheet(nombreHoja);
-
+        CellStyle estilo = bordes(libro);
         for (int i = 0; i < tabla.length; i++) {
             XSSFRow row = hoja.createRow(i);
             for (int j = 0; j < tabla[0].length; j++) {
                 XSSFCell celda = row.createCell(j);
                 celda.setCellValue(tabla[i][j]);
+                celda.setCellStyle(estilo);
             }
         }
 
         for (int j = 0; j < tabla[0].length; j++) {
             hoja.autoSizeColumn(j);
         }
+        
         unirCeldas(hoja, tabla.length, tabla[0].length);
         return libro;
     }
 
+    public static CellStyle bordes(XSSFWorkbook libro){
+        CellStyle estilo = libro.createCellStyle();
+        estilo.setBorderBottom(BorderStyle.THIN);
+        estilo.setBorderTop(BorderStyle.THIN);
+        estilo.setBorderLeft(BorderStyle.THIN);
+        estilo.setBorderRight(BorderStyle.THIN);
+        estilo.setAlignment(HorizontalAlignment.CENTER);
+        estilo.setVerticalAlignment(VerticalAlignment.CENTER);
+        
+        return estilo;
+    }
+    
     public static void unirCeldas(XSSFSheet hoja, int numFilas, int numColumnas) {
         for (int j = 0; j < numColumnas; j++) {
             String materiaActual = null;
@@ -89,8 +108,9 @@ public class ExcelUtils {
                     celdasQueSeUniran = 1;
                 } else {
                     celdasQueSeUniran++;
-                    if(i == numFilas - 1 && celdasQueSeUniran > 1 && !materiaActual.isEmpty())
-                        unirCeldasEnFila(hoja, filaMateriaEmpieza, i, j);
+                    if(i == numFilas - 1 && celdasQueSeUniran > 1 && !materiaActual.isEmpty()){
+                        unirCeldasEnFila(hoja, filaMateriaEmpieza, i, j);                        
+                    }
                 }
             }
         }
@@ -99,4 +119,5 @@ public class ExcelUtils {
     public static void unirCeldasEnFila(XSSFSheet hoja, int filaInicio, int filaFinal, int columna) {
         hoja.addMergedRegion(new CellRangeAddress(filaInicio, filaFinal, columna, columna));
     }
+    
 }
