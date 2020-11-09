@@ -1,6 +1,7 @@
 package GUIs;
 
 import fuentes.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -315,9 +316,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         try {
             ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario");
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al exportar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         
+        }
     }//GEN-LAST:event_jMenuExportarExcelActionPerformed
 
     /**
