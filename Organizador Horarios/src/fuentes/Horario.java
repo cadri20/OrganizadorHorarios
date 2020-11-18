@@ -115,6 +115,15 @@ public class Horario implements Serializable{
         return horarioString ;
     }
     
+    public Materia getMateria(String nombreMateria){
+        for(Materia materia: horario){
+            if(materia.nombreMateria.equals(nombreMateria))
+                return materia;
+        }
+        
+        return null;
+    }
+    
     
     
 }
