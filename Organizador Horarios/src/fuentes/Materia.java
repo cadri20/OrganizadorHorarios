@@ -96,6 +96,22 @@ public class Materia implements Serializable{
         }
         return Collections.min(horasIniciales);        
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(! (obj instanceof Materia) )
+            return false;
+        Materia materiaComparada = (Materia) obj;
+        
+        return nombreMateria.equals(materiaComparada.nombreMateria);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.nombreMateria);
+        return hash;
+    }
     
     
     
