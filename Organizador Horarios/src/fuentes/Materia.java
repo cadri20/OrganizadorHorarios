@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.StringTokenizer;
-
+import java.awt.Color;
 /**
  *
  * @author Adrian Coloma
@@ -19,6 +19,7 @@ public class Materia implements Serializable{
     
     public String nombreMateria;
     ArrayList<HorarioMateria> dias;
+    private Color color;
 
     public Materia() {
         dias = new ArrayList<>();
@@ -28,6 +29,7 @@ public class Materia implements Serializable{
     public Materia(String nombreMateria) {
         this.nombreMateria = nombreMateria;
         dias = new ArrayList<>();
+        color = Color.WHITE;
     }
     
     public Materia(String[] arregloMateria){
@@ -111,6 +113,14 @@ public class Materia implements Serializable{
         int hash = 7;
         hash = 17 * hash + Objects.hashCode(this.nombreMateria);
         return hash;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
     
     

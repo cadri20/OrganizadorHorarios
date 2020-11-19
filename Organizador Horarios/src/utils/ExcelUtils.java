@@ -9,11 +9,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellUtil;
@@ -83,7 +86,8 @@ public class ExcelUtils {
         estilo.setBorderRight(BorderStyle.THIN);
         estilo.setAlignment(HorizontalAlignment.CENTER);
         estilo.setVerticalAlignment(VerticalAlignment.CENTER);
-        
+        estilo.setFillForegroundColor(IndexedColors.GREEN.getIndex());
+        estilo.setFillPattern(FillPatternType.BIG_SPOTS);
         return estilo;
     }
     
