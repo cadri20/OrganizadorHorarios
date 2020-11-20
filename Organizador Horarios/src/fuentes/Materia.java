@@ -19,7 +19,7 @@ public class Materia implements Serializable{
     
     public String nombreMateria;
     ArrayList<HorarioMateria> dias;
-    private Color color;
+    private Color color = Color.WHITE;
 
     public Materia() {
         dias = new ArrayList<>();
@@ -29,7 +29,7 @@ public class Materia implements Serializable{
     public Materia(String nombreMateria) {
         this.nombreMateria = nombreMateria;
         dias = new ArrayList<>();
-        color = Color.WHITE;
+        
     }
     
     public Materia(String[] arregloMateria){
