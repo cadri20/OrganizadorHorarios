@@ -25,12 +25,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     Horario horario;
     boolean estaElHorarioOrdenado;
     ResaltadorTabla resaltador;
+  
     public JFramePrincipal() {
         initComponents();
         listaMaterias = new ArrayList<>();
         materia = new Materia();
         estaElHorarioOrdenado = false;
-        
+        ExcelUtils.mapearColores();
     }
 
     /**
@@ -250,7 +251,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(39, 39, 39)
                         .addComponent(jButton2)
@@ -263,7 +264,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(11, 11, 11)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -341,7 +342,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExportarExcelActionPerformed
         try {
-            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario",estaElHorarioOrdenado);
+            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario",estaElHorarioOrdenado,horario);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
@@ -362,6 +363,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         //jTableHorario.setDefaultRenderer(Object.class, resaltador);
         resaltador = new ResaltadorTabla(horario);
         jTableHorario.setDefaultRenderer(Object.class, resaltador);
+        
     }//GEN-LAST:event_jBAsignarColorActionPerformed
 
     /**
