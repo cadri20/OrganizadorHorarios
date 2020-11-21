@@ -287,7 +287,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
         horario = new Horario(listaMateria);
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
-        estaElHorarioOrdenado = false;
+        estaElHorarioOrdenado = false;      
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, "No se han agregado materias a la lista","Lista vacía", JOptionPane.WARNING_MESSAGE);
         }
@@ -301,8 +301,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         String path = ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionHorario);
         if(path != null){
             horario = ArchivoUtils.cargarHorario(path);
-            UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);            
+            UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);    
+            resaltador = new ResaltadorTabla(horario);
+            jTableHorario.setDefaultRenderer(Object.class, resaltador);
         }       
+        
     }//GEN-LAST:event_jMenuCargarHorarioActionPerformed
 
     private void jMenuGuardarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarListaActionPerformed
