@@ -163,9 +163,14 @@ public class ExcelUtils {
         mapaColores.put(Color.PINK, IndexedColors.PINK);
         mapaColores.put(Color.YELLOW, IndexedColors.YELLOW);
         mapaColores.put(Color.ORANGE, IndexedColors.ORANGE);
-        mapaColores.put(Color.CYAN, IndexedColors.LIGHT_BLUE);
+        mapaColores.put(Color.CYAN, IndexedColors.TURQUOISE);
         mapaColores.put(Color.GREEN, IndexedColors.GREEN);
         mapaColores.put(Color.WHITE, IndexedColors.WHITE);
+        mapaColores.put(new Color(51,255,0), IndexedColors.BRIGHT_GREEN);
+        mapaColores.put(new Color(255,255,102), IndexedColors.LIGHT_YELLOW);
+        mapaColores.put(Color.MAGENTA, IndexedColors.PINK1);
+        mapaColores.put(new Color(102,0,255), IndexedColors.INDIGO);
+        mapaColores.put(new Color(255,102,255), IndexedColors.ROSE);
     }
     
     public static Color obtenerColorMasParecido(Color colorComparado, Set<Color> colores){
