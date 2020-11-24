@@ -359,6 +359,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
         Materia materiaSeleccionada = horario.getMateria(nombreMateriaSeleccionada);
         Color colorSeleccionado = JColorChooser.showDialog(rootPane, "Selecciona un color", Color.WHITE);
         
+        if(colorSeleccionado == null)
+            return;
+        
         materiaSeleccionada.setColor(colorSeleccionado);
         
         //UtilsGUI.asignarColor(jTableHorario, horario);
