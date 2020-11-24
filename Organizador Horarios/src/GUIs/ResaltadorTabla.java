@@ -28,8 +28,6 @@ public class ResaltadorTabla extends DefaultTableCellRenderer {
                 setBackground(materiaSeleccionada.getColor());
             else{
                 setBackground(Color.WHITE);
-                if(column == 0)
-                    System.out.println("Materia seleccionada no encontrada");
             }
         }else{
             System.out.println("horario es nulo");
