@@ -344,8 +344,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBHorarioOrdenadoActionPerformed
 
     private void jMenuExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExportarExcelActionPerformed
+        String path = ArchivoUtils.obtenerPath("Guardar", "xlsx");
+        if(path == null)
+            return;
+        
         try {
-            ExcelUtils.crearArchivoExcel(jTableHorario, ArchivoUtils.obtenerPath("Guardar", "xlsx"), "Horario",estaElHorarioOrdenado,horario);
+            ExcelUtils.crearArchivoExcel(jTableHorario, path, "Horario",estaElHorarioOrdenado,horario);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
