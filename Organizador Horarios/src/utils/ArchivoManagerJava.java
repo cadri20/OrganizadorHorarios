@@ -18,54 +18,57 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Hp
  */
-public class ArchivoUtils {
-    public static String extensionHorario = "hor";
-    public static String extensionLista = "lis";
-    public static void guardarHorario(Horario horario, String path){
+public class ArchivoManagerJava extends ArchivoManager{
+    @Override
+    public void guardarHorario(Horario horario, String path){
         try {
             ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + "." + extensionHorario)));
             salida.writeObject(horario);
         } catch (IOException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static Horario cargarHorario(String path){
+    @Override
+    public Horario cargarHorario(String path){
         Horario horario = null;
         try {
             ObjectInputStream entrada = new ObjectInputStream(Files.newInputStream(Paths.get(path)));
             horario = (Horario) entrada.readObject();
         } catch (IOException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         }
         return horario;
     }
     
-    public static void guardarLista(ArrayList<Materia> listaMaterias, String path){
+    @Override
+    public void guardarLista(ArrayList<Materia> listaMaterias, String path){
         try {
             ObjectOutputStream salida = new ObjectOutputStream(Files.newOutputStream(Paths.get(path + "." + extensionLista)));
             salida.writeObject(listaMaterias);
         } catch (IOException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
     
-    public static ArrayList<Materia> cargarLista(String path){
+    @Override
+    public ArrayList<Materia> cargarLista(String path){
         ArrayList<Materia> listaMaterias = null;
         try {
             ObjectInputStream entrada = new ObjectInputStream(Files.newInputStream(Paths.get(path)));
             listaMaterias = (ArrayList<Materia>) entrada.readObject();
         } catch (IOException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArchivoManagerJava.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listaMaterias;    
     }
     
-    public static String obtenerPath(String textoBoton, String extension){
+    @Override
+    public String obtenerPath(String textoBoton, String extension){
         JFileChooser fileChooser = new JFileChooser(new File("."));
         fileChooser.setFileFilter(new FileNameExtensionFilter(extension, extension));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);

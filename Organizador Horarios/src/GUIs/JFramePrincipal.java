@@ -12,7 +12,9 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import utils.ArchivoUtils;
+import utils.ArchivoManager;
+import utils.ArchivoManager;
+import utils.ArchivoManagerJava;
 import utils.ExcelUtils;
 
 /**
@@ -25,13 +27,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
     Horario horario;
     boolean estaElHorarioOrdenado;
     ResaltadorTabla resaltador;
-  
+    private ArchivoManager archivoManager;
+    
     public JFramePrincipal() {
         initComponents();
         listaMaterias = new ArrayList<>();
         materia = new Materia();
         estaElHorarioOrdenado = false;
         ExcelUtils.mapearColores();
+        archivoManager = new ArchivoManagerJava();
     }
 
     /**
@@ -294,13 +298,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGenerarHorarioActionPerformed
 
     private void jMenuGuardarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarHorarioActionPerformed
-        ArchivoUtils.guardarHorario(horario, ArchivoUtils.obtenerPath("Guardar", ArchivoUtils.extensionHorario));
+        archivoManager.guardarHorario(horario, archivoManager.obtenerPath("Guardar", archivoManager.extensionHorario));
     }//GEN-LAST:event_jMenuGuardarHorarioActionPerformed
 
     private void jMenuCargarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarHorarioActionPerformed
-        String path = ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionHorario);
+        String path = archivoManager.obtenerPath("Abrir", archivoManager.extensionHorario);
         if(path != null){
-            horario = ArchivoUtils.cargarHorario(path);
+            horario = archivoManager.cargarHorario(path);
             UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);    
             resaltador = new ResaltadorTabla(horario);
             jTableHorario.setDefaultRenderer(Object.class, resaltador);
@@ -310,13 +314,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuGuardarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarListaActionPerformed
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
-        ArchivoUtils.guardarLista(listaMateria, ArchivoUtils.obtenerPath("Guardar", ArchivoUtils.extensionLista));
+        archivoManager.guardarLista(listaMateria, archivoManager.obtenerPath("Guardar", archivoManager.extensionLista));
     }//GEN-LAST:event_jMenuGuardarListaActionPerformed
 
     private void jMenuCargarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarListaActionPerformed
-        String path = ArchivoUtils.obtenerPath("Abrir", ArchivoUtils.extensionLista);
+        String path = archivoManager.obtenerPath("Abrir", archivoManager.extensionLista);
         if(path != null){
-            ArrayList<Materia> listaMateria = ArchivoUtils.cargarLista(path);
+            ArrayList<Materia> listaMateria = archivoManager.cargarLista(path);
             UtilsGUI.mostrarListaEnTabla(listaMateria, jTableListaMaterias1);
         }
     }//GEN-LAST:event_jMenuCargarListaActionPerformed
@@ -344,7 +348,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBHorarioOrdenadoActionPerformed
 
     private void jMenuExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuExportarExcelActionPerformed
-        String path = ArchivoUtils.obtenerPath("Guardar", "xlsx");
+        String path = archivoManager.obtenerPath("Guardar", "xlsx");
         if(path == null)
             return;
         
