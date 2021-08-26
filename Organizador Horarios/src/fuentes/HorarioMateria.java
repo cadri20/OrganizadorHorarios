@@ -13,9 +13,9 @@ import java.io.Serializable;
  */
 public class HorarioMateria implements Serializable{
     
-    Dia dia;
-    int horaInicio;
-    int horaFinal;
+    public Dia dia;
+    public int horaInicio;
+    public int horaFinal;
 
     public HorarioMateria(Dia dia, int horaInicio, int horaFinal) {
         this.dia = dia;

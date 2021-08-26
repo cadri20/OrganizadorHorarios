@@ -18,8 +18,8 @@ import java.awt.Color;
 public class Materia implements Serializable{
     
     public String nombreMateria;
-    ArrayList<HorarioMateria> dias;
-    private Color color = Color.WHITE;
+    public ArrayList<HorarioMateria> dias;
+    private Color color;
 
     public Materia() {
         dias = new ArrayList<>();
@@ -27,9 +27,13 @@ public class Materia implements Serializable{
 
     
     public Materia(String nombreMateria) {
-        this.nombreMateria = nombreMateria;
+        this(nombreMateria, Color.WHITE);
+    }
+    
+    public Materia(String nombre, Color color){
+        this.nombreMateria = nombre;
+        this.color = color;
         dias = new ArrayList<>();
-        
     }
     
     public Materia(String[] arregloMateria){
@@ -120,7 +124,10 @@ public class Materia implements Serializable{
     }
 
     public Color getColor() {
-        return color;
+        if(color == null)
+            return Color.WHITE;
+        else
+            return color;
     }
     
     

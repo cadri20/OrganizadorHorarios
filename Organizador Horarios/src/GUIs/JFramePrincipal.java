@@ -2,19 +2,14 @@ package GUIs;
 
 import fuentes.*;
 import java.awt.Color;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import utils.ArchivoManager;
-import utils.ArchivoManager;
-import utils.ArchivoManagerJava;
 import utils.ExcelUtils;
 
 /**
@@ -35,7 +30,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         materia = new Materia();
         estaElHorarioOrdenado = false;
         ExcelUtils.mapearColores();
-        archivoManager = new ArchivoManagerJava();
+        archivoManager = ArchivoManager.getInstance();
     }
 
     /**

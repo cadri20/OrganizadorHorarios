@@ -14,17 +14,24 @@ import java.util.Set;
  * @author Hp
  */
 public class Horario implements Serializable{
-    Collection<Materia> horario;
+    private List<Materia> horario;
     public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     public static String[] titulosColumnasConHoras = {"Horas","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     public Horario(ArrayList<Materia> materias){
-        if(!materias.isEmpty())
-            horario = organizarHorario(materias);
-        else
-            throw new IllegalArgumentException("La lista esta vacía");
+        this(materias, true);
     }
     
-    private Collection<Materia> organizarHorario(ArrayList<Materia> materias){
+    public Horario(ArrayList<Materia> materias, boolean organizar){
+        if(organizar){
+            if (!materias.isEmpty())
+                horario = organizarHorario(materias);
+            else
+                throw new IllegalArgumentException("La lista esta vacía");
+        }else{
+            horario = materias;
+        }
+    }    
+    private List<Materia> organizarHorario(ArrayList<Materia> materias){
         Collections.shuffle(materias); //Se ordena aleatoriamente a la lista de materias (Para que obtenerse diferentes horarios
         ArrayList<Materia> listaOrganizada = new ArrayList<Materia>(); //En esta lista se iran agregando las materias 
         for(Materia materiaAIngresar: materias){ //Se itera en la lista de materias
@@ -124,6 +131,8 @@ public class Horario implements Serializable{
         return null;
     }
     
-    
+    public List<Materia> getMaterias(){
+        return horario;
+    }
     
 }

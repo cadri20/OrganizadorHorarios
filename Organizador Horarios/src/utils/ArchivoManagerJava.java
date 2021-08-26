@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Hp
  */
-public class ArchivoManagerJava extends ArchivoManager{
+class ArchivoManagerJava extends ArchivoManager{
     @Override
     public void guardarHorario(Horario horario, String path){
         try {
@@ -67,16 +67,4 @@ public class ArchivoManagerJava extends ArchivoManager{
         return listaMaterias;    
     }
     
-    @Override
-    public String obtenerPath(String textoBoton, String extension){
-        JFileChooser fileChooser = new JFileChooser(new File("."));
-        fileChooser.setFileFilter(new FileNameExtensionFilter(extension, extension));
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int resultado = fileChooser.showDialog(null, textoBoton);
-        
-        if(resultado == JFileChooser.CANCEL_OPTION)
-            return null;
-        
-        return fileChooser.getSelectedFile().toString();
-    }
 }
