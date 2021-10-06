@@ -130,6 +130,13 @@ public class Materia implements Serializable{
             return color;
     }
     
-    
+    public int getTotalHoras(){
+        int totalHoras = 0;
+        for(HorarioMateria horario: dias){
+            totalHoras += horario.getTotalHoras();
+        }
+        
+        return totalHoras;
+    }
     
 }

@@ -54,6 +54,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jBHorarioOrdenado = new javax.swing.JButton();
         jBAsignarColor = new javax.swing.JButton();
+        jBTotalHoras = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuGuardarHorario = new javax.swing.JMenuItem();
@@ -164,6 +165,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
+        jBTotalHoras.setText("Total de horas");
+        jBTotalHoras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTotalHorasActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Archivo");
 
         jMenuGuardarHorario.setText("Guardar Horario");
@@ -219,7 +227,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBAsignarColor)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBAsignarColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBTotalHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -268,7 +278,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBAsignarColor)
-                                .addGap(164, 164, 164))))))
+                                .addGap(36, 36, 36)
+                                .addComponent(jBTotalHoras)
+                                .addGap(103, 103, 103))))))
         );
 
         pack();
@@ -375,6 +387,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBAsignarColorActionPerformed
 
+    private void jBTotalHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTotalHorasActionPerformed
+        int totalHoras = horario.getTotalHoras();
+        JOptionPane.showMessageDialog(this, "Numero de horas: " + totalHoras);
+    }//GEN-LAST:event_jBTotalHorasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -411,6 +428,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBBorrarMateria;
     private javax.swing.JButton jBGenerarHorario;
     private javax.swing.JButton jBHorarioOrdenado;
+    private javax.swing.JButton jBTotalHoras;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;

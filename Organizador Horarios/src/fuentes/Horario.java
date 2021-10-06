@@ -135,4 +135,13 @@ public class Horario implements Serializable{
         return horario;
     }
     
+    public int getTotalHoras(){
+        int totalHoras = 0;
+        for(Materia materia: horario){
+            totalHoras += materia.getTotalHoras();
+        }
+        
+        return totalHoras;
+    }
+    
 }

@@ -59,4 +59,7 @@ public class HorarioMateria implements Serializable{
         return filas;
     }
     
+    public int getTotalHoras(){
+        return horaFinal - horaInicio;
+    }
 }
