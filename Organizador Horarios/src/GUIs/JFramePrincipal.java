@@ -23,6 +23,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     boolean estaElHorarioOrdenado;
     ResaltadorTabla resaltador;
     private ArchivoManager archivoManager;
+    private boolean horarioGuardado = true;
+    private boolean listaGuardada = true;
     
     public JFramePrincipal() {
         initComponents();
@@ -64,7 +66,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuExportarExcel = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -291,6 +301,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         String[] filaNula = new String[modelo.getColumnCount()];
         Arrays.fill(filaNula, null);
         modelo.addRow(filaNula);
+        listaGuardada = false;
     }//GEN-LAST:event_jBAgregarMateriaActionPerformed
 
     private void jBGenerarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarHorarioActionPerformed
@@ -299,6 +310,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         horario = new Horario(listaMateria);
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
         estaElHorarioOrdenado = false;      
+        horarioGuardado = false;
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, "No se han agregado materias a la lista","Lista vacía", JOptionPane.WARNING_MESSAGE);
         }
@@ -306,15 +318,24 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private void jMenuGuardarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarHorarioActionPerformed
         archivoManager.guardarHorario(horario, archivoManager.obtenerPath("Guardar", archivoManager.extensionHorario));
+        horarioGuardado = true;
     }//GEN-LAST:event_jMenuGuardarHorarioActionPerformed
 
     private void jMenuCargarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarHorarioActionPerformed
-        String path = archivoManager.obtenerPath("Abrir", archivoManager.extensionHorario);
+        if (!horarioGuardado) {
+            int opcionSeleccionada = JOptionPane.showConfirmDialog(this, "El horario actual no se ha guardado, ¿está seguro que quiere cargar otro?", "Datos no guardados", JOptionPane.WARNING_MESSAGE);
+            if (opcionSeleccionada == JOptionPane.CANCEL_OPTION) {
+                return;
+            }
+        }
+        
+        String path = archivoManager.obtenerPath("Abrir", archivoManager.extensionHorario);       
         if(path != null){
             horario = archivoManager.cargarHorario(path);
             UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);    
             resaltador = new ResaltadorTabla(horario);
             jTableHorario.setDefaultRenderer(Object.class, resaltador);
+            horarioGuardado = true;
         }       
         
     }//GEN-LAST:event_jMenuCargarHorarioActionPerformed
@@ -322,13 +343,22 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jMenuGuardarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarListaActionPerformed
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
         archivoManager.guardarLista(listaMateria, archivoManager.obtenerPath("Guardar", archivoManager.extensionLista));
+        listaGuardada = true;
     }//GEN-LAST:event_jMenuGuardarListaActionPerformed
 
     private void jMenuCargarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCargarListaActionPerformed
+        if (!listaGuardada) {
+            int opcionSeleccionada = JOptionPane.showConfirmDialog(this, "La lista actual no se ha guardado, ¿está seguro que quiere cargar otro?", "Datos no guardados", JOptionPane.WARNING_MESSAGE);
+            if (opcionSeleccionada == JOptionPane.CANCEL_OPTION) {
+                return;
+            }
+        }
+        
         String path = archivoManager.obtenerPath("Abrir", archivoManager.extensionLista);
         if(path != null){
             ArrayList<Materia> listaMateria = archivoManager.cargarLista(path);
             UtilsGUI.mostrarListaEnTabla(listaMateria, jTableListaMaterias1);
+            listaGuardada = true;
         }
     }//GEN-LAST:event_jMenuCargarListaActionPerformed
 
@@ -391,6 +421,20 @@ public class JFramePrincipal extends javax.swing.JFrame {
         int totalHoras = horario.getTotalHoras();
         JOptionPane.showMessageDialog(this, "Numero de horas: " + totalHoras);
     }//GEN-LAST:event_jBTotalHorasActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(!listaGuardada || !horarioGuardado){
+            int opcionSeleccionada = JOptionPane.showConfirmDialog(this, "Algunos datos no se han guardado, ¿esta seguro que quiere salir?", "Datos no guardados", JOptionPane.WARNING_MESSAGE);
+            if(opcionSeleccionada == JOptionPane.CANCEL_OPTION)
+                return;
+        }
+        
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
