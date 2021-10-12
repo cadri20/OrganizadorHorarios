@@ -340,7 +340,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private Horario getHorarioConMasHoras(ArrayList<Materia> materias, int numCombinaciones){
         Horario horarioConMasHoras = null;
-        for(int i = 1; i < numCombinaciones; i++){
+        for(int i = 1; i <= numCombinaciones; i++){
             Horario horarioObtenido = new Horario(materias);
             if(horarioConMasHoras == null || horarioObtenido.getTotalHoras() > horarioConMasHoras.getTotalHoras())
                 horarioConMasHoras = horarioObtenido;
