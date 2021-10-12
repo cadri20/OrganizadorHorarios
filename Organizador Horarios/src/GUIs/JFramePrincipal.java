@@ -188,6 +188,9 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Combinaciones a probar");
 
+        jSpCombinaciones.setModel(new javax.swing.SpinnerNumberModel(1, 1, 50, 1));
+        jSpCombinaciones.setValue(1);
+
         jBMostrarConflictos.setText("Mostrar Conflictos");
         jBMostrarConflictos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
