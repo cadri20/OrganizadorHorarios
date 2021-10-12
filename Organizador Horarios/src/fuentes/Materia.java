@@ -20,34 +20,46 @@ public class Materia implements Serializable{
     public String nombreMateria;
     public ArrayList<HorarioMateria> dias;
     private Color color;
+    private int prioridad;
     
     private HorarioMateria causaConflictoActual = null;
 
     public Materia() {
         dias = new ArrayList<>();
+        this.prioridad = 0;
     }
 
     
     public Materia(String nombreMateria) {
-        this(nombreMateria, Color.WHITE);
+        this(nombreMateria, Color.WHITE, 0);
     }
     
     public Materia(String nombre, Color color){
+        this(nombre, color, 0);
+    }
+    public Materia(String nombre, Color color, int prioridad){
         this.nombreMateria = nombre;
         this.color = color;
+        this.prioridad = prioridad;
         dias = new ArrayList<>();
     }
     
     public Materia(String[] arregloMateria){
         this.nombreMateria = arregloMateria[0];
         this.dias = new ArrayList<>();
-        for(int i = 1; i < arregloMateria.length; i++){
+        for(int i = 1; i < arregloMateria.length - 1; i++){
             if(arregloMateria[i] != null && !arregloMateria[i].equals("")){
                 StringTokenizer st = new StringTokenizer(arregloMateria[i],"-");
                 this.addDia(Dia.getDia(i - 1), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
             }
 
         }
+        
+        String stringPrioridad = arregloMateria[7];
+        if(stringPrioridad != null)
+            this.prioridad = Integer.parseInt(arregloMateria[7]);
+        else
+            this.prioridad = 0;
     }
     public void addDia(Dia dia,int horaInicio, int horaFinal){
         HorarioMateria horarioMateria = new HorarioMateria(dia,horaInicio,horaFinal);
@@ -149,5 +161,12 @@ public class Materia implements Serializable{
         
         return totalHoras;
     }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
     
+    public int compararPrioridad(Materia materia){
+        return Integer.compare(prioridad, materia.prioridad);
+    }
 }

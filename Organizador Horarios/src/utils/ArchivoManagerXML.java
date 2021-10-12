@@ -106,7 +106,12 @@ public class ArchivoManagerXML extends ArchivoManager{
     private Materia elementToMateria(Element elemento){
         String nombreMateria = elemento.getAttribute("nombre");
         Color color = new Color(Integer.parseInt(elemento.getAttribute("color")));
-        Materia materia = new Materia(nombreMateria, color);
+        String atributoPrioridad = elemento.getAttribute("prioridad");
+        int prioridad = 0;
+        if(!atributoPrioridad.isEmpty())
+            prioridad = Integer.parseInt(atributoPrioridad);
+        
+        Materia materia = new Materia(nombreMateria, color, prioridad);
         
         NodeList listaDias = elemento.getElementsByTagName("horario_materia");
         for(int i = 0; i < listaDias.getLength(); i++){
@@ -164,6 +169,7 @@ public class ArchivoManagerXML extends ArchivoManager{
         Element materiaElement = documento.createElement("materia");
         materiaElement.setAttribute("nombre", materia.nombreMateria);
         materiaElement.setAttribute("color", Integer.toString(materia.getColor().getRGB()));
+        materiaElement.setAttribute("prioridad", Integer.toString(materia.getPrioridad()));
         
         for(HorarioMateria horario : materia.dias){
             Element dia = documento.createElement("horario_materia");

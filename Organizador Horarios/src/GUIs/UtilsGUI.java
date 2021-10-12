@@ -44,7 +44,11 @@ public class UtilsGUI {
         int numColumnas = tabla.getColumnCount();
         String[] fila = new String[numColumnas];
         for(int i = 0; i < numColumnas; i++){
-            fila[i] = (String) tabla.getValueAt(rowNum, i);
+            Object valor = tabla.getValueAt(rowNum, i);
+            if(valor instanceof Integer)
+                fila[i] = Integer.toString((Integer) valor);
+            else
+                fila[i] = (String) valor;
         }
         return fila;
     }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,23 +23,36 @@ public class Horario implements Serializable{
     public static String[] titulosColumnasConHoras = {"Horas","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     private Map<Materia[], HorarioMateria> colisiones;
     
-    public Horario(ArrayList<Materia> materias){      
-        this(materias, true);
+    public Horario(ArrayList<Materia> materias, boolean conPrioridades){      
+        this(materias, true, conPrioridades);
     }
     
-    public Horario(ArrayList<Materia> materias, boolean organizar){
+    public Horario(ArrayList<Materia> materias, boolean organizar, boolean conPrioridades){
         colisiones = new HashMap<>();
         if(organizar){
             if (!materias.isEmpty())
-                horario = organizarHorario(materias);
+                horario = organizarHorario(materias, conPrioridades);
             else
                 throw new IllegalArgumentException("La lista esta vacía");
         }else{
             horario = materias;
         }
     }    
-    private List<Materia> organizarHorario(ArrayList<Materia> materias){
-        Collections.shuffle(materias); //Se ordena aleatoriamente a la lista de materias (Para que obtenerse diferentes horarios
+    
+    private List<Materia> organizarHorario(ArrayList<Materia> materias, boolean conPrioridades){
+        if(!conPrioridades){
+            Collections.shuffle(materias);           
+        }else{
+            Collections.sort(materias, Collections.reverseOrder((Materia materia1, Materia materia2) -> {
+                return materia1.compararPrioridad(materia2);
+            }));
+        }
+        
+        return organizarHorario(materias);
+            
+    }
+    
+    private List<Materia> organizarHorario(ArrayList<Materia> materias){   
         ArrayList<Materia> listaOrganizada = new ArrayList<Materia>(); //En esta lista se iran agregando las materias 
         for(Materia materiaAIngresar: materias){ //Se itera en la lista de materias
             if(listaOrganizada.isEmpty()){ 
