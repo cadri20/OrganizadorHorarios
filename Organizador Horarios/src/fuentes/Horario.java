@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -17,11 +20,14 @@ public class Horario implements Serializable{
     private List<Materia> horario;
     public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     public static String[] titulosColumnasConHoras = {"Horas","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
-    public Horario(ArrayList<Materia> materias){
+    private Map<Materia[], HorarioMateria> colisiones;
+    
+    public Horario(ArrayList<Materia> materias){      
         this(materias, true);
     }
     
     public Horario(ArrayList<Materia> materias, boolean organizar){
+        colisiones = new HashMap<>();
         if(organizar){
             if (!materias.isEmpty())
                 horario = organizarHorario(materias);
@@ -42,6 +48,9 @@ public class Horario implements Serializable{
                 for(Materia materiaActual: listaOrganizada){ //Se itera dentro de la listaOrganizada para comparar su contenido con la materia que se quiere ingresar
                     if(materiaAIngresar.hayConflicto(materiaActual)){
                         colisiona = true;             // Si la materia a ingresar tiene conflicto con una de la listaOrganizada se detiene el bucle
+                        HorarioMateria conflictoActual = materiaAIngresar.getConflictoActual();
+                        if(conflictoActual != null)
+                            colisiones.put(new Materia[]{materiaAIngresar, materiaActual}, materiaAIngresar.getConflictoActual());
                         break;   
                     }
                 }
@@ -142,6 +151,21 @@ public class Horario implements Serializable{
         }
         
         return totalHoras;
+    }
+
+    public String[][] getColisiones() {
+        String[][] cadenasColisiones = new String[colisiones.size()][3];
+        int filaActual = 0;
+        
+        for(Entry<Materia[], HorarioMateria> colision : colisiones.entrySet()){
+            cadenasColisiones[filaActual][0] = colision.getValue().toString();
+            cadenasColisiones[filaActual][1] = colision.getKey()[0].toString();
+            cadenasColisiones[filaActual][2] = colision.getKey()[1].toString();
+            
+            filaActual++;
+        }
+        
+        return cadenasColisiones;
     }
     
 }

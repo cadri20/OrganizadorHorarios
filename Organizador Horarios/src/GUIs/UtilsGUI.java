@@ -2,6 +2,7 @@ package GUIs;
 
 import fuentes.Dia;
 import fuentes.Horario;
+import fuentes.HorarioMateria;
 import fuentes.Materia;
 import java.awt.Color;
 import java.awt.Component;
@@ -67,6 +68,14 @@ public class UtilsGUI {
         tabla.setModel(modelo);
     }
     
+    public static void mostrarConflictos(String[][] conflictos, JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        modelo.setRowCount(0);
+        for (String[] conflicto : conflictos) {          
+            modelo.addRow(conflicto);
+        }
+        tabla.setModel(modelo);
+    }
     public static String[] getTitulos(JTable tabla){
         String[] titulos = new String[tabla.getColumnCount()];
         for(int i = 0; i < titulos.length; i++){

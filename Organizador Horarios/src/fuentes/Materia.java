@@ -20,6 +20,8 @@ public class Materia implements Serializable{
     public String nombreMateria;
     public ArrayList<HorarioMateria> dias;
     private Color color;
+    
+    private HorarioMateria causaConflictoActual = null;
 
     public Materia() {
         dias = new ArrayList<>();
@@ -58,11 +60,17 @@ public class Materia implements Serializable{
                     
         for(HorarioMateria horarioMateria: dias){
             for(HorarioMateria horarioMateria2: materia.dias){
-                if(horarioMateria.colisiona(horarioMateria2))
+                if(horarioMateria.colisiona(horarioMateria2)){
+                    causaConflictoActual = horarioMateria;
                     return true;
+                }
             }
         }
         return false;
+    }
+    
+    public HorarioMateria getConflictoActual(){
+        return causaConflictoActual;
     }
     
     public String[] toArray(){
@@ -80,11 +88,14 @@ public class Materia implements Serializable{
     
     @Override
     public String toString() {
+        /*
         String materiaString = nombreMateria + '\n';
         for(HorarioMateria dia: dias){
             materiaString+= dia.toString() + '\n';
         }
-        return materiaString;
+        return materiaString;*/
+        
+        return nombreMateria;
     }
 
     public int getHoraMayor(){
