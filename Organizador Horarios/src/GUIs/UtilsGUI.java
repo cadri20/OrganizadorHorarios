@@ -66,7 +66,7 @@ public class UtilsGUI {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0);
         for(Materia materia: listaMaterias){
-            String[] arregloMateria = materia.toArray();
+            Object[] arregloMateria = materia.toArray();
             modelo.addRow(arregloMateria);
         }
         tabla.setModel(modelo);
