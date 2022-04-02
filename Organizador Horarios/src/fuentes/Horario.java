@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class Horario implements Serializable{
     private List<Materia> horario;
-    public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado","Prioridad"};
+    public static String[] titulosColumnas = {"Materia","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado","Prioridad", "Creditos"};
     public static String[] titulosColumnasConHoras = {"Horas","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     private Map<Materia[], HorarioMateria> colisiones;
     
@@ -165,6 +165,14 @@ public class Horario implements Serializable{
         }
         
         return totalHoras;
+    }
+    
+    public int getTotalCreditos(){
+        int totalCreditos = 0;
+        for(Materia materia: horario)
+            totalCreditos += materia.getCreditos();
+        
+        return totalCreditos;
     }
 
     public String[][] getColisiones() {

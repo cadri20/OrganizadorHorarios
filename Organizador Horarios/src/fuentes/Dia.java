@@ -5,8 +5,6 @@
  */
 package fuentes;
 
-import sun.net.www.content.image.gif;
-
 /**
  *
  * @author David Arteaga, Ariel Pillajo, Adrian Coloma

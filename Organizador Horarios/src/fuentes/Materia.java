@@ -21,7 +21,8 @@ public class Materia implements Serializable{
     public ArrayList<HorarioMateria> dias;
     private Color color;
     private int prioridad;
-    
+    private int creditos;
+           
     private HorarioMateria causaConflictoActual = null;
 
     public Materia() {
@@ -60,6 +61,13 @@ public class Materia implements Serializable{
             this.prioridad = Integer.parseInt(arregloMateria[7]);
         else
             this.prioridad = 0;
+        
+        String stringCreditos = arregloMateria[8];
+        
+        if(stringCreditos != null)
+            this.creditos = Integer.parseInt(arregloMateria[8]);
+        else
+            this.creditos= 0;
     }
     public void addDia(Dia dia,int horaInicio, int horaFinal){
         HorarioMateria horarioMateria = new HorarioMateria(dia,horaInicio,horaFinal);
@@ -93,6 +101,7 @@ public class Materia implements Serializable{
         }
         
         arregloMateria[7] = prioridad == 0 ? null : Integer.toString(prioridad);
+        arregloMateria[8] = creditos == 0 ? null : Integer.toString(creditos);
         return arregloMateria;
     }
 
@@ -171,4 +180,13 @@ public class Materia implements Serializable{
     public int compararPrioridad(Materia materia){
         return Integer.compare(prioridad, materia.prioridad);
     }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+    
 }

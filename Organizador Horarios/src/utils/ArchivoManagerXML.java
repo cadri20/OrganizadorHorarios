@@ -113,6 +113,10 @@ public class ArchivoManagerXML extends ArchivoManager{
         
         Materia materia = new Materia(nombreMateria, color, prioridad);
         
+        String atributoCreditos = elemento.getAttribute("creditos");
+        if(!atributoCreditos.isEmpty())
+            materia.setCreditos(Integer.parseInt(atributoCreditos));
+        
         NodeList listaDias = elemento.getElementsByTagName("horario_materia");
         for(int i = 0; i < listaDias.getLength(); i++){
             Node nodo = listaDias.item(i);
@@ -129,7 +133,7 @@ public class ArchivoManagerXML extends ArchivoManager{
         return materia;
     }
     
-
+    
     @Override
     public void guardarHorario(Horario horario, String path) {
         guardar(horario.getMaterias(), path, false);
@@ -170,6 +174,7 @@ public class ArchivoManagerXML extends ArchivoManager{
         materiaElement.setAttribute("nombre", materia.nombreMateria);
         materiaElement.setAttribute("color", Integer.toString(materia.getColor().getRGB()));
         materiaElement.setAttribute("prioridad", Integer.toString(materia.getPrioridad()));
+        materiaElement.setAttribute("creditos", Integer.toString(materia.getCreditos()));
         
         for(HorarioMateria horario : materia.dias){
             Element dia = documento.createElement("horario_materia");
