@@ -65,6 +65,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jBTotalCreditos = new javax.swing.JButton();
         jSPCreditos = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
+        jCBGenerarPorCreditos = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuGuardarHorario = new javax.swing.JMenuItem();
@@ -221,6 +222,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Maximo creditos");
 
+        jCBGenerarPorCreditos.setText("Generar por creditos");
+        jCBGenerarPorCreditos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBGenerarPorCreditosActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Archivo");
 
         jMenuGuardarHorario.setText("Guardar Horario");
@@ -282,7 +290,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
                     .addComponent(jBMostrarConflictos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBTotalCreditos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(27, 27, 27)
@@ -290,31 +298,30 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSPCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
+                        .addComponent(jSPCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
                         .addComponent(jBGenerarHorario)
-                        .addGap(43, 43, 43)
+                        .addGap(42, 42, 42)
                         .addComponent(jCBPrioridades)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(8, 8, 8))
-                            .addComponent(jBHorarioOrdenado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(60, 73, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jCBGenerarPorCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(8, 8, 8))
+                    .addComponent(jBHorarioOrdenado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -325,21 +332,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addComponent(jBHorarioOrdenado)
                         .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jBGenerarHorario)
+                                .addComponent(jCBPrioridades)
+                                .addComponent(jCBGenerarPorCreditos))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jSPCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(jSpCombinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jBGenerarHorario)
-                                        .addComponent(jCBPrioridades))
-                                    .addComponent(jSPCreditos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jSpCombinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +374,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private void jBGenerarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarHorarioActionPerformed
         try{
         ArrayList<Materia> listaMateria = (ArrayList) UtilsGUI.tableToList(jTableListaMaterias1);
-        horario = getHorarioConMasHoras(listaMateria, (Integer) jSpCombinaciones.getValue());
+        if(jCBGenerarPorCreditos.isSelected())
+            horario = getHorarioConMasCreditos(listaMateria, (Integer) jSpCombinaciones.getValue());
+        else
+            horario = getHorarioConMasHoras(listaMateria, (Integer) jSpCombinaciones.getValue());
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
         estaElHorarioOrdenado = false;      
         horarioGuardado = false;
@@ -395,6 +403,25 @@ public class JFramePrincipal extends javax.swing.JFrame {
         
         return horarioConMasHoras;
     }
+    
+    private Horario getHorarioConMasCreditos(ArrayList<Materia> materias, int numCombinaciones){
+        Horario horarioConMasCreditos = null;
+        int maxCreditos;
+        int valorSP = (Integer) jSPCreditos.getValue();
+        if(valorSP == 0){
+            maxCreditos = Horario.SIN_MAX_CREDITOS;
+        }else
+            maxCreditos = valorSP;
+        
+        for(int i = 1; i <= numCombinaciones; i++){
+            Horario horarioObtenido = new Horario(materias, jCBPrioridades.isSelected(), maxCreditos);
+            if(horarioConMasCreditos == null || horarioObtenido.getTotalCreditos() > horarioConMasCreditos.getTotalHoras())
+                horarioConMasCreditos= horarioObtenido;
+        }
+        
+        return horarioConMasCreditos;
+    }
+    
     private void jMenuGuardarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuGuardarHorarioActionPerformed
         archivoManager.guardarHorario(horario, archivoManager.obtenerPath("Guardar", archivoManager.extensionHorario));
         horarioGuardado = true;
@@ -525,6 +552,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Numero de creditos: " + totalCreditos);
     }//GEN-LAST:event_jBTotalCreditosActionPerformed
 
+    private void jCBGenerarPorCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBGenerarPorCreditosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBGenerarPorCreditosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -566,6 +597,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jBTotalHoras;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCBGenerarPorCreditos;
     private javax.swing.JCheckBox jCBPrioridades;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
