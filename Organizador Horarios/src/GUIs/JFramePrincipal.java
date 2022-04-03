@@ -63,6 +63,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jBMostrarConflictos = new javax.swing.JButton();
         jCBPrioridades = new javax.swing.JCheckBox();
         jBTotalCreditos = new javax.swing.JButton();
+        jSPCreditos = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuGuardarHorario = new javax.swing.JMenuItem();
@@ -217,6 +219,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Maximo creditos");
+
         jMenu1.setText("Archivo");
 
         jMenuGuardarHorario.setText("Guardar Horario");
@@ -283,9 +287,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(27, 27, 27)
                         .addComponent(jSpCombinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSPCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
                         .addComponent(jBGenerarHorario)
-                        .addGap(82, 82, 82)
+                        .addGap(43, 43, 43)
                         .addComponent(jCBPrioridades)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -317,12 +325,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
                         .addComponent(jBHorarioOrdenado)
                         .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBGenerarHorario)
-                            .addComponent(jLabel1)
-                            .addComponent(jSpCombinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCBPrioridades))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jSpCombinaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jBGenerarHorario)
+                                        .addComponent(jCBPrioridades))
+                                    .addComponent(jSPCreditos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,8 +380,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     private Horario getHorarioConMasHoras(ArrayList<Materia> materias, int numCombinaciones){
         Horario horarioConMasHoras = null;
+        int maxCreditos;
+        int valorSP = (Integer) jSPCreditos.getValue();
+        if(valorSP == 0){
+            maxCreditos = Horario.SIN_MAX_CREDITOS;
+        }else
+            maxCreditos = valorSP;
+        
         for(int i = 1; i <= numCombinaciones; i++){
-            Horario horarioObtenido = new Horario(materias, jCBPrioridades.isSelected());
+            Horario horarioObtenido = new Horario(materias, jCBPrioridades.isSelected(), maxCreditos);
             if(horarioConMasHoras == null || horarioObtenido.getTotalHoras() > horarioConMasHoras.getTotalHoras())
                 horarioConMasHoras = horarioObtenido;
         }
@@ -544,6 +568,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCBPrioridades;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -553,6 +578,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuGuardarHorario;
     private javax.swing.JMenuItem jMenuGuardarLista;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSPCreditos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpCombinaciones;

@@ -67,7 +67,7 @@ public class ArchivoManagerXML extends ArchivoManager{
             Element materias = (Element) documento.getDocumentElement().getFirstChild();
             boolean materiasRepetidas = Boolean.parseBoolean(materias.getAttribute("materias_repetidas"));
             if(!materiasRepetidas)
-                return new Horario(getLista(documento), false);
+                return new Horario(getLista(documento), false, Horario.SIN_MAX_CREDITOS);
         } catch (SAXException | IOException ex) {
             Logger.getLogger(ArchivoManagerXML.class.getName()).log(Level.SEVERE, null, ex);
         }

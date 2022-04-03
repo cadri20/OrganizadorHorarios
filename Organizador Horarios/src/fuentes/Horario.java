@@ -1,6 +1,7 @@
 package fuentes;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,15 +24,16 @@ public class Horario implements Serializable{
     public static String[] titulosColumnasConHoras = {"Horas","Lunes","Martes","Miércoles","Jueves","Viernes","Sabado"};
     private Map<Materia[], HorarioMateria> colisiones;
     
-    public Horario(ArrayList<Materia> materias, boolean conPrioridades){      
-        this(materias, true, conPrioridades);
+    public static int SIN_MAX_CREDITOS = -1;
+    public Horario(ArrayList<Materia> materias, boolean conPrioridades, int maxCreditos){      
+        this(materias, true, conPrioridades, maxCreditos);
     }
     
-    public Horario(ArrayList<Materia> materias, boolean organizar, boolean conPrioridades){
+    public Horario(ArrayList<Materia> materias, boolean organizar, boolean conPrioridades, int maxCreditos){
         colisiones = new HashMap<>();
         if(organizar){
             if (!materias.isEmpty())
-                horario = organizarHorario(materias, conPrioridades);
+                horario = organizarHorario(materias, conPrioridades, maxCreditos);
             else
                 throw new IllegalArgumentException("La lista esta vacía");
         }else{
@@ -39,7 +41,7 @@ public class Horario implements Serializable{
         }
     }    
     
-    private List<Materia> organizarHorario(ArrayList<Materia> materias, boolean conPrioridades){
+    private List<Materia> organizarHorario(ArrayList<Materia> materias, boolean conPrioridades, int maxCreditos){
         if(!conPrioridades){
             Collections.shuffle(materias);           
         }else{
@@ -48,11 +50,11 @@ public class Horario implements Serializable{
             }));
         }
         
-        return organizarHorario(materias);
+        return organizarHorario(materias, maxCreditos);
             
     }
     
-    private List<Materia> organizarHorario(ArrayList<Materia> materias){   
+    private List<Materia> organizarHorario(ArrayList<Materia> materias, int maxCreditos){   
         ArrayList<Materia> listaOrganizada = new ArrayList<Materia>(); //En esta lista se iran agregando las materias 
         for(Materia materiaAIngresar: materias){ //Se itera en la lista de materias
             if(listaOrganizada.isEmpty()){ 
@@ -68,8 +70,14 @@ public class Horario implements Serializable{
                         break;   
                     }
                 }
-                if(!colisiona)
+                if(!colisiona){
+                    if(maxCreditos != SIN_MAX_CREDITOS){
+                        int creditosDespues = totalCreditos(listaOrganizada) + materiaAIngresar.getCreditos();
+                        if(creditosDespues > maxCreditos)
+                            return listaOrganizada;
+                    }
                     listaOrganizada.add(materiaAIngresar); //Si la materia a ingresar no colisionó con ninguna de la listaOrganizada entonces se la ingresa
+                }
             }
         }
         return listaOrganizada;
@@ -158,21 +166,27 @@ public class Horario implements Serializable{
         return horario;
     }
     
-    public int getTotalHoras(){
+    private int totalHoras(List<Materia> materias){
         int totalHoras = 0;
-        for(Materia materia: horario){
+        for(Materia materia: materias){
             totalHoras += materia.getTotalHoras();
         }
         
         return totalHoras;
     }
+    public int getTotalHoras(){
+        return totalHoras(horario);
+    }
     
-    public int getTotalCreditos(){
+    private int totalCreditos(List<Materia> materias){
         int totalCreditos = 0;
-        for(Materia materia: horario)
+        for(Materia materia: materias)
             totalCreditos += materia.getCreditos();
         
-        return totalCreditos;
+        return totalCreditos;        
+    }
+    public int getTotalCreditos(){
+        return totalCreditos(horario);
     }
 
     public String[][] getColisiones() {
