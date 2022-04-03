@@ -378,9 +378,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             horario = getHorarioConMasCreditos(listaMateria, (Integer) jSpCombinaciones.getValue());
         else
             horario = getHorarioConMasHoras(listaMateria, (Integer) jSpCombinaciones.getValue());
+        
         UtilsGUI.mostrarHorarioEnTabla(horario, jTableHorario);
         estaElHorarioOrdenado = false;      
         horarioGuardado = false;
+        int numMateriasNoIngresadas = listaMateria.size() - horario.getMaterias().size();
+        if(numMateriasNoIngresadas != 0){
+            JOptionPane.showMessageDialog(this, "No se han ingresado " + numMateriasNoIngresadas + " materias", "", JOptionPane.WARNING_MESSAGE);
+        }
         }catch(IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, "No se han agregado materias a la lista","Lista vacía", JOptionPane.WARNING_MESSAGE);
         }
